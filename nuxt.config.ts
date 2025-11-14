@@ -173,6 +173,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    preset: 'github-pages',
     compressPublicAssets: true,
     minify: true,
     routeRules: {

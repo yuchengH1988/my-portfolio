@@ -7,6 +7,7 @@
     "build": "nuxt build --dotenv .env.production",
     "start": "nuxt start --dotenv .env.production",
     "dev": "nuxt dev",
+    "git:generate": "nuxt generate --dotenv .env.git",
     "generate": "nuxt generate --dotenv .env.production",
     "stage:generate": "nuxt generate --dotenv .env.stage",
     "preview": "nuxt preview --dotenv .env.development",
