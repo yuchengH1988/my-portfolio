@@ -1,0 +1,38 @@
+{
+  "editor.tabSize": 2,
+  // 關閉VScode內建的檢查
+  "scss.validate": false,
+  "css.validate": false,
+  "less.validate": false,
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+  // 若有Vetur，關閉Vetur的檢查（Vue 2使用）
+  "vetur.validation.style": false,
+  "vetur.validation.template": false,
+  "vetur.validation.script": false,
+  // Stylelint
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "scss", "sass", "vue", "html"],
+  "[css][scss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  // Eslint
+  "eslint.format.enable": true,
+  "editor.formatOnSave": true,
+  "eslint.validate": ["javascript", "typescript", "javascriptreact", "vue"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "git.ignoreLimitWarning": true
+}
