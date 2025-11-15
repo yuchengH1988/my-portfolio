@@ -1,7 +1,7 @@
 <template>
   <section id="home" class="relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden sm:h-dvh">
     <CommonP5Hero class="z-[-1]" />
-    <div class="text-center font-bold uppercase text-white">
+    <div class="z-[1] text-center font-bold uppercase text-white">
       <div class="flex flex-col text-[40px] leading-[0.9] md:flex-row md:text-[64px] lg:text-[86px] xl:text-[100px]">
         <span>CODE</span><span>．</span><span>DESIGN</span><span>．</span><span>FLOW</span>
       </div>

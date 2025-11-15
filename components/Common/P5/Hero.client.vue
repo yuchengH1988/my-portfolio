@@ -1,12 +1,23 @@
 <script setup>
 import P5 from 'p5'
-
+const { $gsap } = useNuxtApp()
 const canvasContainer = ref(null)
+const coverEl = ref(null)
 let sketchInstance = null
 let observer = null
 
 onMounted(async () => {
   await nextTick()
+  const tl = $gsap.timeline()
+  tl.fromTo(coverEl.value, {
+    opacity: 1,
+    backdropFilter: 'blur(20px)'
+  },
+  {
+    opacity: 0,
+    backdropFilter: 'blur(0px)',
+    duration: 3
+  })
   const sketch = (p) => {
     let canvasSize, r
     const bg = 0
@@ -132,6 +143,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="canvasContainer" class="absolute inset-0"></div>
+  <div ref="coverEl" class="absolute inset-0 bg-black"></div>
 </template>
 
 <style scoped>
