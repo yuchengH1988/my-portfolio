@@ -53,7 +53,7 @@ const experiences = ref(await Promise.all([
 
 </script>
 <template>
-  <section id="exp" class="w-screen overflow-x-hidden text-white">
+  <section id="exp" class="w-screen overflow-hidden text-white">
     <div class="set w-full pt-10 text-bgc/90">
       <h2 data-fade="up" class="text-[52px] font-extra-bold uppercase leading-[0.9] sm:text-[68px] md:text-[80px]">
         Work Experience
