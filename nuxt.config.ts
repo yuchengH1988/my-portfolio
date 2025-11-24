@@ -117,7 +117,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     APP_URL: process.env.APP_URL,
     APP_API: process.env.APP_API,
-    BS_URL: process.env.BS_URL,
     APP_CDN_URL: process.env.APP_CDN_URL,
     public: {
       APP_TITLE: process.env.APP_TITLE,
@@ -125,7 +124,6 @@ export default defineNuxtConfig({
       APP_URL: process.env.APP_URL,
       APP_API: process.env.APP_API,
       APP_BACKEND_API: process.env.APP_BACKEND_API,
-      BS_URL: process.env.BS_URL,
       APP_CDN_URL: process.env.APP_CDN_URL,
       GA_ID: process.env.GA_ID,
       GTM_ID: process.env.GTM_ID,
