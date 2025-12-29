@@ -6,12 +6,22 @@ import imgNation from '~/assets/images/nation-archive.jpeg'
 import imgSino from '~/assets/images/chine-fa.jpg'
 import imgYichui from '~/assets/images/yichui.jpeg'
 import imgPaipai from '~/assets/images/paipai.jpg'
+import imgDeer from '~/assets/images/deer.jpg'
 import imgOpenProcess from '~/assets/images/openprocess.webp'
 
 // Swiper 樣式（必要）
 import 'swiper/css'
 import 'swiper/css/pagination'
 const selectedData = ref([
+  {
+    title: 'Formosa adventure',
+    description: 'National Museum of Taiwan History',
+    highlight: [
+      '3D interactive game'
+    ],
+    image: 'deer.jpg',
+    link: 'https://taiwanoverseas.nmth.gov.tw/collection-event/'
+  },
   {
     title: 'Time Traveler',
     description: 'National Archives of Taiwan',
@@ -73,7 +83,8 @@ const imageMap = {
   'chine-fa.jpg': imgSino,
   'yichui.jpeg': imgYichui,
   'paipai.jpg': imgPaipai,
-  'openprocess.webp': imgOpenProcess
+  'openprocess.webp': imgOpenProcess,
+  'deer.jpg': imgDeer
 }
 const imgUrl = name => imageMap[name] || name
 </script>
