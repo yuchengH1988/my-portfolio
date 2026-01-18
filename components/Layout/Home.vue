@@ -1,12 +1,43 @@
+<script setup>
+const { $gsap } = useNuxtApp()
+const wordsRef = ref(null)
+const nameRef = ref(null)
+onMounted(() => {
+  nextTick(() => {
+    const spans = wordsRef.value?.querySelectorAll('span')
+    if (!spans?.length) { return }
+    const nameEl = nameRef.value
+    const tl = $gsap.timeline()
+    tl.from(spans, {
+      y: 24,
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power3.out',
+      stagger: 0.2,
+      delay: 1
+    })
+    if (nameEl) {
+      tl.from(nameEl, {
+        filter: 'blur(10px)',
+        opacity: 0,
+        scale: 1.6,
+        duration: 1.6,
+        ease: 'power2.out'
+      }, '-=0.4')
+    }
+  })
+})
+
+</script>
 <template>
   <section id="home" class="relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden sm:h-dvh">
     <CommonP5Hero class="z-[-1]" />
     <div class="z-[1] text-center font-bold uppercase text-white">
-      <div class="flex flex-col text-[40px] leading-[0.9] md:flex-row md:text-[64px] lg:text-[86px] xl:text-[100px]">
+      <div ref="wordsRef" class="flex flex-col text-[40px] leading-[0.9] md:flex-row md:text-[64px] lg:text-[86px] xl:text-[100px]">
         <span>CODE</span><span>．</span><span>DESIGN</span><span>．</span><span>FLOW</span>
       </div>
       <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-400 sm:bottom-[20%] md:bottom-20">
-        <h1 class="mt-10 text-[14px] sm:text-[20px]">
+        <h1 ref="nameRef" class="mt-10 text-[14px] sm:text-[20px]">
           YU CHENG HUANG<br />
           FrontEnd Developer
         </h1>
