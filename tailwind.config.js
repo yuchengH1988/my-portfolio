@@ -85,6 +85,9 @@ module.exports = {
       easeOutQuint: 'cubic-bezier(0.33, 1, 0.68, 1)'
     },
     extend: {
+      height: {
+        sh: 'var(--sh)'
+      },
       colors: {
         transparent: 'transparent',
         black: '#000',
