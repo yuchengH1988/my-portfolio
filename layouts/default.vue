@@ -7,6 +7,7 @@ const { globalData, webLoading } = toRefs(useAllStore())
 <template>
   <div class="layout">
     <div class="fixed inset-0 z-[-2] bg-black"></div>
+    <CommonCursorPointer />
     <LayoutHeader />
     <slot />
     <div id="subField" class="relative z-[500]">
