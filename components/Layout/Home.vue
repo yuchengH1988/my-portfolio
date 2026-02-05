@@ -8,13 +8,18 @@ onMounted(() => {
     if (!spans?.length) { return }
     const nameEl = nameRef.value
     const tl = $gsap.timeline()
-    tl.from(spans, {
-      y: 24,
-      opacity: 0,
-      duration: 1.2,
-      ease: 'power3.out',
-      stagger: 0.2,
-      delay: 1
+    tl.fromTo(spans, {
+      transformOrigin: 'center bottom',
+      transformPerspective: 800,
+      rotateX: 90,
+      opacity: 0
+    }, {
+      rotateX: 0,
+      opacity: 1,
+      duration: 2,
+      stagger: 0.3,
+      delay: 2,
+      ease: 'power3.out'
     })
     if (nameEl) {
       tl.from(nameEl, {
@@ -23,7 +28,7 @@ onMounted(() => {
         scale: 1.6,
         duration: 1.6,
         ease: 'power2.out'
-      }, '-=0.4')
+      }, '-=1.5')
     }
   })
 })
