@@ -47,14 +47,14 @@ onMounted(async () => {
     p.draw = () => {
       // 依滑鼠位置調整目標角度，並以 lerp 平滑過渡
       const toAngle = p.map(p.mouseX, 50, canvasSize - 50, 0.15, 0.65, true)
-      rotateAngle = p.lerp(rotateAngle, toAngle, 0.05)
+      rotateAngle = p.lerp(rotateAngle, toAngle, 0.01)
 
       // 清背景
       p.fill(bg)
       p.rect(0, 0, p.windowWidth, p.windowHeight)
 
-      const shadowSpeed = p.map(Math.abs(canvasSize / 2 - p.mouseY), 0, canvasSize / 2, 8, 2, true)
-      speed = p.lerp(speed, shadowSpeed, 0.05)
+      const shadowSpeed = p.map(Math.abs(canvasSize / 2 - p.mouseY), 0, canvasSize / 2, 4, 2, true)
+      speed = p.lerp(speed, shadowSpeed, 0.01)
 
       // 初始半徑向量
       r = p.createVector(canvasSize * 1.1, 0)
