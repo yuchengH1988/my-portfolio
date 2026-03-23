@@ -49,7 +49,6 @@ onMounted(() => {
 watch(
   isPointerDevice,
   (enabled) => {
-    console.log('isPointerDevice changed:', enabled)
     if (!enabled) {
       isDisplay.value = false
       currentSize = 0

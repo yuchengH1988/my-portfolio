@@ -72,6 +72,7 @@ export const useAllStore = defineStore('all', () => {
   const doubleCount = computed(() => count.value * 2)
 
   const { isPointerDevice } = checkPointer()
+  // 元件內請用 storeToRefs(useAllStore()).isPointerDevice，才能隨裝置變化更新
 
   return {
     windowWidth,

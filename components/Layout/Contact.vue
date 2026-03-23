@@ -1,6 +1,6 @@
 <script setup>
 const links = ref([
-  { name: 'Email', url: 'mailto:yucheng.h.1988@gmail.com' },
+  { name: 'Email', url: 'mailto:calvin.huang.dev@gmail.com' },
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/huangyucheng/' },
   { name: 'GitHub', url: 'https://github.com/yuchengH1988' },
   { name: 'Open Process', url: 'https://openprocessing.org/user/436847/#sketches' }
