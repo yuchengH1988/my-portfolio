@@ -1,4 +1,40 @@
 <script setup>
+const { $gsap } = useNuxtApp()
+const introRef = ref(null)
+let introRadiusTween = null
+
+onMounted(() => {
+  if (!introRef.value) { return }
+
+  introRadiusTween = $gsap.fromTo(
+    introRef.value,
+    {
+      borderTopLeftRadius: '999px',
+      borderTopRightRadius: '999px',
+      background: '#ffffff00',
+      y: 100
+    },
+    {
+      borderTopLeftRadius: '0px',
+      borderTopRightRadius: '0px',
+      background: '#d6d6d6cc',
+      ease: 'none',
+      y: 0,
+      scrollTrigger: {
+        trigger: introRef.value,
+        start: 'top bottom',
+        end: 'top 80%',
+        scrub: true
+      }
+    }
+  )
+})
+
+onBeforeUnmount(() => {
+  introRadiusTween?.scrollTrigger?.kill()
+  introRadiusTween?.kill()
+})
+
 const skills = ref([
   {
     title: 'Frontend',
@@ -56,7 +92,7 @@ const skills = ref([
 </script>
 
 <template>
-  <div id="intro" class="w-screen bg-white/80">
+  <div id="intro" ref="introRef" class="w-screen bg-white/80">
     <div class="set grid w-full grid-cols-1 overflow-visible lg:grid-cols-2">
       <div data-fade="up" class="top-0 mb-15 mt-30 flex flex-col justify-center pl-5 pr-10 sm:my-30 lg:sticky lg:h-dvh lg:border-r lg:border-white/80 lg:py-0 xl:pl-0">
         <span class="inline-block w-fit rounded-full bg-black px-2 text-[18px] uppercase text-white/80 sm:text-[24px] xl:py-0.5 xl:text-[40px]">
@@ -77,7 +113,7 @@ const skills = ref([
         >
           <h3
             data-fade="up"
-            class="mb-2 text-[50px] sm:text-[40px] md:mb-8 md:text-[76px] lg:mb-0 lg:text-[60px] xl:text-[80px]"
+            class="mb-2 text-[50px] duration-300 hover:translate-x-10 hover:font-light sm:text-[40px] md:mb-8 md:text-[76px] lg:mb-0 lg:text-[60px] xl:text-[80px]"
           >
             Technical<br class="sm:hidden lg:inline-block" /><span class="sm:mx-2 lg:hidden"></span>Skills
           </h3>
@@ -88,7 +124,7 @@ const skills = ref([
           >
             <h4
               data-fade="left"
-              class="mb-1 text-[40px] text-black/70  xl:text-[64px]"
+              class="mb-1 text-[40px] text-black/70 duration-300 hover:translate-x-10 hover:font-light  xl:text-[64px]"
             >
               {{ title }}
             </h4>
@@ -96,7 +132,7 @@ const skills = ref([
               v-for="(item, i) in list"
               :key="i"
               data-fade="right"
-              class="pl-7 text-[36px] text-black/40 sm:pl-14 sm:text-[40px]  xl:text-[64px]"
+              class="pl-7 text-[36px] text-black/40 duration-300 hover:translate-x-10 hover:font-light sm:pl-14 sm:text-[40px]  xl:text-[64px]"
             >
               {{ item }}
             </span>
