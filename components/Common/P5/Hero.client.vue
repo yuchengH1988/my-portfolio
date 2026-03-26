@@ -23,6 +23,7 @@ onMounted(async () => {
     const bg = 0
     let speed = 2
     let rotateAngle = 0.5
+    const lastSpeedLogAt = 0
 
     p.setup = () => {
       p.colorMode(p.HSB, 360, 100, 100, 1)
@@ -53,7 +54,7 @@ onMounted(async () => {
       p.fill(bg)
       p.rect(0, 0, p.windowWidth, p.windowHeight)
 
-      const shadowSpeed = p.map(Math.abs(canvasSize / 2 - p.mouseY), 0, canvasSize / 2, 4, 2, true)
+      const shadowSpeed = p.map(Math.abs(canvasSize / 2 - p.mouseY), 0, canvasSize / 2, 2.5, 1, true)
       speed = p.lerp(speed, shadowSpeed, 0.01)
 
       // 初始半徑向量
