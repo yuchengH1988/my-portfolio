@@ -23,7 +23,7 @@ onMounted(async () => {
     const bg = 0
     let speed = 2
     let rotateAngle = 0.5
-    const lastSpeedLogAt = 0
+    let colorPhase = 0
 
     p.setup = () => {
       p.colorMode(p.HSB, 360, 100, 100, 1)
@@ -42,20 +42,21 @@ onMounted(async () => {
       canvas.parent(canvasContainer.value)
 
       p.strokeWeight(0)
-      p.frameRate(30)
+      p.frameRate(60)
     }
 
     p.draw = () => {
       // 依滑鼠位置調整目標角度，並以 lerp 平滑過渡
-      const toAngle = p.map(p.mouseX, 50, canvasSize - 50, 0.15, 0.65, true)
-      rotateAngle = p.lerp(rotateAngle, toAngle, 0.01)
+      const toAngle = p.map(p.mouseX, 50, canvasSize - 50, 0.15, 0.5, true)
+      rotateAngle = p.lerp(rotateAngle, toAngle, 0.005)
 
       // 清背景
       p.fill(bg)
       p.rect(0, 0, p.windowWidth, p.windowHeight)
 
-      const shadowSpeed = p.map(Math.abs(canvasSize / 2 - p.mouseY), 0, canvasSize / 2, 2.5, 1, true)
-      speed = p.lerp(speed, shadowSpeed, 0.01)
+      const shadowSpeed = p.map(Math.abs(canvasSize / 2 - p.mouseY), 0, canvasSize / 2, 2.3, 1, true)
+      speed = p.lerp(speed, shadowSpeed, 0.005)
+      colorPhase = (colorPhase + speed * Math.min(p.deltaTime, 32) / 16.6667) % 140
 
       // 初始半徑向量
       r = p.createVector(canvasSize * 1.1, 0)
@@ -73,7 +74,7 @@ onMounted(async () => {
         p.fill(
           0,
           p.saturation(paintColor),
-          colorCircle(p.brightness(paintColor) + x * 7 + p.frameCount * speed),
+          colorCircle(p.brightness(paintColor) + x * 7 + colorPhase),
           0.03 // 透明度：0~1
         )
         paintOctagon(r)
