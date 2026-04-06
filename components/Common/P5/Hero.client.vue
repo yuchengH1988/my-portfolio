@@ -144,8 +144,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="canvasContainer" class="absolute inset-0"></div>
-  <div ref="coverEl" class="absolute inset-0 bg-black"></div>
+  <div class="absolute inset-0">
+    <div ref="canvasContainer" class="absolute inset-0"></div>
+    <div ref="coverEl" class="absolute inset-0 bg-black"></div>
+  </div>
 </template>
 
 <style scoped>

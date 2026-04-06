@@ -1,38 +1,46 @@
 <script setup>
 const { $gsap } = useNuxtApp()
 const introRef = ref(null)
-let introRadiusTween = null
+const leftIntroRef = ref(null)
+const introTextChars = ref([])
+const introRadiusTween = null
+let introTextTween = null
+
+const introText = 'Hi, I’m Calvin, a frontend engineer who loves turning design and motion into seamless web experiences. I build interactive, animation-driven websites with a focus on performance, precision, and user flow. My background in hospitality taught me to care about people’s experiences - now I apply that same mindset to the digital world.'
+const introWords = introText.split(' ').map(word => word.split(''))
 
 onMounted(() => {
-  if (!introRef.value) { return }
+  if (!leftIntroRef.value || !introTextChars.value.length) { return }
 
-  introRadiusTween = $gsap.fromTo(
-    introRef.value,
+  introTextTween = $gsap.fromTo(
+    introTextChars.value,
     {
-      borderTopLeftRadius: '999px',
-      borderTopRightRadius: '999px',
-      background: '#ffffff00',
-      y: 100
+      yPercent: 110
     },
     {
-      borderTopLeftRadius: '0px',
-      borderTopRightRadius: '0px',
-      background: '#d6d6d6cc',
-      ease: 'none',
-      y: 0,
+      yPercent: 0,
+      duration: 0.8,
+      stagger: 0.02,
+      ease: 'power3.out',
       scrollTrigger: {
-        trigger: introRef.value,
-        start: 'top bottom',
-        end: 'top 80%',
+        trigger: leftIntroRef.value,
+        start: 'top 60%',
+        end: 'top top',
         scrub: true
       }
     }
   )
 })
 
+onBeforeUpdate(() => {
+  introTextChars.value = []
+})
+
 onBeforeUnmount(() => {
   introRadiusTween?.scrollTrigger?.kill()
   introRadiusTween?.kill()
+  introTextTween?.scrollTrigger?.kill()
+  introTextTween?.kill()
 })
 
 const skills = ref([
@@ -94,15 +102,30 @@ const skills = ref([
 <template>
   <div id="intro" ref="introRef" class="w-screen bg-white/80">
     <div class="set grid w-full grid-cols-1 overflow-visible lg:grid-cols-2">
-      <div data-fade="up" class="top-0 mb-15 mt-30 flex flex-col justify-center pl-5 pr-10 sm:my-30 lg:sticky lg:h-dvh lg:border-r lg:border-white/80 lg:py-0 xl:pl-0">
-        <span class="inline-block w-fit rounded-full bg-black px-2 text-[18px] uppercase text-white/80 sm:text-[24px] xl:py-0.5 xl:text-[40px]">
+      <div ref="leftIntroRef" class="top-0 mb-15 mt-30 flex flex-col justify-center pl-5 pr-10 sm:mt-0 lg:sticky lg:mb-0 lg:h-dvh lg:border-r lg:border-white/80 lg:py-0 xl:pl-0">
+        <span class="inline-block w-fit rounded-full bg-black px-2 text-[18px] uppercase text-white/80 sm:text-[24px] xl:px-4 xl:py-0.5 xl:text-[40px]">
           Introduction
         </span>
         <h2 class="text-[52px] font-black uppercase text-white sm:text-[80px] xl:text-[100px]">
           Overview
         </h2>
         <p class="text-[16px] font-medium leading-[1.6] text-black/50 sm:text-[20px] sm:leading-[1.4] xl:text-[28px]">
-          Hi, I’m Calvin, a frontend engineer who loves turning design and motion into seamless web experiences. I build interactive, animation-driven websites with a focus on performance, precision, and user flow. My background in hospitality taught me to care about people’s experiences — now I apply that same mindset to the digital world.
+          <span
+            v-for="(word, wordIndex) in introWords"
+            :key="`${word.join('')}-${wordIndex}`"
+            class="mr-[0.25em] inline-flex overflow-hidden align-top"
+          >
+            <span
+              v-for="(char, charIndex) in word"
+              :key="`${char}-${wordIndex}-${charIndex}`"
+              class="inline-block overflow-hidden"
+            >
+              <span
+                :ref="el => { if (el) introTextChars.push(el) }"
+                class="inline-block will-change-transform"
+              >{{ char }}</span>
+            </span>
+          </span>
         </p>
       </div>
       <div
