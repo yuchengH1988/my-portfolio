@@ -1,5 +1,5 @@
 <template>
-  <section id="work" class="w-screen overflow-hidden">
+  <section id="work" class="none-scroll h-max w-screen overflow-x-hidden">
     <LayoutWorkProject />
     <LayoutWorkDescription />
   </section>
