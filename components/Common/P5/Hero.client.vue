@@ -47,8 +47,8 @@ onMounted(async () => {
 
     p.draw = () => {
       // 依滑鼠位置調整目標角度，並以 lerp 平滑過渡
-      const toAngle = p.map(p.mouseX, 50, canvasSize - 50, 0.1, 0.7, true)
-      rotateAngle = p.lerp(rotateAngle, toAngle, 0.007)
+      const toAngle = p.map(p.mouseX, 0, canvasSize - 50, 0.1, 0.65, true)
+      rotateAngle = p.lerp(rotateAngle, toAngle, 0.01)
 
       // 清背景
       p.fill(bg)
