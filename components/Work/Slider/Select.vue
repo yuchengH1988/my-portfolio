@@ -159,11 +159,11 @@ onBeforeUnmount(() => {
         v-for="(item, idx) in selectedData"
         :key="item.title"
         :ref="el => setSlideRef(el, idx)"
-        class="absolute inset-0 bg-black px-4 py-8"
+        class="absolute inset-0 bg-black py-8 sm:px-2 lg:px-4"
         :style="{ zIndex: idx + 1 }"
       >
         <div
-          class="group relative isolate flex h-[calc(100dvh-64px)] flex-col items-center justify-center gap-8 overflow-hidden rounded-[32px] px-5 lg:flex-row lg:justify-between"
+          class="group relative isolate flex h-[calc(100dvh-64px)] flex-col items-start justify-center gap-8 overflow-hidden rounded-[32px] px-2 lg:flex-row lg:justify-between"
         >
           <div class="pointer-events-none absolute inset-0 z-0">
             <img
@@ -173,19 +173,19 @@ onBeforeUnmount(() => {
             />
             <div class="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:opacity-0" />
           </div>
-          <div class="relative flex w-[480px] flex-col px-4 py-2 text-left font-bold text-black">
+          <div class="relative flex w-[min(100%,370px)] flex-col px-4 py-2 text-left font-bold text-black lg:w-[480px]">
             <AtomBgGlass />
-            <span class="z-[2] text-[24px]  leading-[2]">
+            <span class="z-[2] text-[14px] leading-[2] lg:text-[24px]">
               {{ String(idx + 1).padStart(2, '0') }}
             </span>
             <div class="z-[2] flex flex-col gap-2">
-              <h3 class="text-[24px] leading-[0.9] sm:text-[32px]">
+              <h3 class="text-[20px] leading-[0.9] lg:text-[32px]">
                 {{ item.title }}
               </h3>
               <p class="text-sm uppercase">
                 {{ item.description }}
               </p>
-              <p class="text-[16px]">
+              <p class="text-[12px] lg:text-[16px]">
                 <span v-for="(point, pidx) in item.highlight" :key="pidx">
                   - {{ point }}<br v-if="pidx < item.highlight.length - 1" />
                 </span>
@@ -197,7 +197,7 @@ onBeforeUnmount(() => {
             :href="item.link"
             target="_blank"
             rel="noopener noreferrer"
-            class="z-10 relative block aspect-[2] w-full rounded-3xl lg:flex-1"
+            class="z-10 relative ml-auto block aspect-square w-[min(520px,100%)] rounded-3xl sm:aspect-[2] lg:ml-0 lg:w-full lg:flex-1"
           >
             <img
               :src="imgUrl(item.image)"
