@@ -206,7 +206,10 @@ onBeforeUnmount(() => {
               :src="imgUrl(item.image)"
               :alt="`${item.title}圖片` || `slide-${idx}`"
               class="size-full rounded-3xl object-cover transition-all duration-500"
-              :class="[isCursor ? 'blur-[2px] grayscale group-hover:blur-0 group-hover:grayscale-0' : 'blur-0']"
+              :class="[
+                isCursor ? 'blur-[2px] grayscale group-hover:blur-0 group-hover:grayscale-0' : 'blur-0',
+                [2, 3].includes(idx) && 'object-left sm:object-center'
+              ]"
             />
           </a>
         </div>
