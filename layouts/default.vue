@@ -1,13 +1,13 @@
 <script setup>
 import { useAllStore } from '@/store/all'
-const { globalData, webLoading } = toRefs(useAllStore())
+const { globalData, webLoading, isCursor } = toRefs(useAllStore())
 
 </script>
 
 <template>
   <div class="layout">
     <div class="fixed inset-0 z-[-2] bg-black"></div>
-    <CommonCursorPointer />
+    <CommonCursorPointer v-if="isCursor" />
     <LayoutHeader />
     <slot />
     <div id="subField" class="relative z-[500]">

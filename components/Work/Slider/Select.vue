@@ -1,4 +1,5 @@
 <script setup>
+import { useAllStore } from '~/store/all'
 import imgNation from '~/assets/images/nation-archive.jpeg'
 import imgSino from '~/assets/images/chine-fa.jpg'
 import imgYichiu from '~/assets/images/yichiu.jpeg'
@@ -7,6 +8,7 @@ import imgDeer from '~/assets/images/deer.jpg'
 import imgOpenProcess from '~/assets/images/openprocess.webp'
 
 const { $gsap, $ScrollTrigger } = useNuxtApp()
+const { isCursor } = storeToRefs(useAllStore())
 
 const selectedData = ref([
   {
@@ -159,19 +161,20 @@ onBeforeUnmount(() => {
         v-for="(item, idx) in selectedData"
         :key="item.title"
         :ref="el => setSlideRef(el, idx)"
-        class="absolute inset-0 bg-black py-8 sm:px-2 lg:px-4"
+        class="absolute inset-0 bg-black py-8 sm:px-2 lg:px-6"
         :style="{ zIndex: idx + 1 }"
       >
         <div
-          class="group relative isolate flex h-[calc(100dvh-64px)] flex-col items-start justify-center gap-8 overflow-hidden rounded-[32px] px-2 lg:flex-row lg:justify-between"
+          class="group relative isolate flex h-[calc(100dvh-64px)] flex-col items-start justify-center gap-8 overflow-hidden rounded-[32px] px-2 lg:flex-row lg:items-center lg:justify-between lg:px-5"
         >
           <div class="pointer-events-none absolute inset-0 z-0">
             <img
               :src="imgUrl(item.image)"
               :alt="`${item.title}圖片` || `slide-${idx}`"
-              class="size-full object-cover opacity-80 transition-all duration-500 sm:blur-[0px] sm:group-hover:blur-[2px]"
+              class="size-full object-cover opacity-80 transition-all duration-500"
+              :class="[isCursor ? 'blur-[0px] group-hover:blur-[2px]' : 'blur-[2px]']"
             />
-            <div class="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:opacity-0" />
+            <div v-if="isCursor" class="absolute inset-0 bg-black/20 opacity-100 transition-opacity duration-500 group-hover:opacity-0" />
           </div>
           <div class="relative flex w-[min(100%,370px)] flex-col px-4 py-2 text-left font-bold text-black lg:w-[480px]">
             <AtomBgGlass />
@@ -202,7 +205,8 @@ onBeforeUnmount(() => {
             <img
               :src="imgUrl(item.image)"
               :alt="`${item.title}圖片` || `slide-${idx}`"
-              class="size-full rounded-3xl object-cover transition-all duration-500 sm:blur-[2px] sm:grayscale sm:group-hover:blur-0 sm:group-hover:grayscale-0"
+              class="size-full rounded-3xl object-cover transition-all duration-500"
+              :class="[isCursor ? 'blur-[2px] grayscale group-hover:blur-0 group-hover:grayscale-0' : 'blur-0']"
             />
           </a>
         </div>

@@ -1,5 +1,7 @@
 <script setup>
+import { useAllStore } from '~/store/all'
 const { $gsap } = useNuxtApp()
+const { isCursor } = storeToRefs(useAllStore())
 const introRef = ref(null)
 const leftIntroRef = ref(null)
 const introTextChars = ref([])
@@ -136,7 +138,8 @@ const skills = ref([
         >
           <h3
             data-fade="up"
-            class="mb-2 text-[50px] duration-300 hover:translate-x-10 hover:font-light sm:text-[40px] md:mb-8 md:text-[76px] lg:mb-0 lg:text-[60px] xl:text-[80px]"
+            class="mb-2 text-[50px] duration-300 sm:text-[40px] md:mb-8 md:text-[76px] lg:mb-0 lg:text-[60px] xl:text-[80px]"
+            :class="isCursor && 'hover:translate-x-10 hover:font-light'"
           >
             Technical<br class="sm:hidden lg:inline-block" /><span class="sm:mx-2 lg:hidden"></span>Skills
           </h3>
