@@ -1,7 +1,7 @@
 <script setup>
 import { useAllStore } from '~/store/all'
 
-const { isPointerDevice } = storeToRefs(useAllStore())
+const { isCursor } = storeToRefs(useAllStore())
 const isDisplay = ref(false)
 const cursorEl = ref(null)
 
@@ -47,7 +47,7 @@ onMounted(() => {
 })
 
 watch(
-  isPointerDevice,
+  isCursor,
   (enabled) => {
     if (!enabled) {
       isDisplay.value = false
