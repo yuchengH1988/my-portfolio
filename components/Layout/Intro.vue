@@ -2,7 +2,6 @@
 import { useAllStore } from '~/store/all'
 const { $gsap } = useNuxtApp()
 const { isCursor } = storeToRefs(useAllStore())
-const introRef = ref(null)
 const rightInfoRef = ref(null)
 const leftInfoRef = ref(null)
 const introTextChars = ref([])

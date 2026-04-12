@@ -1,11 +1,27 @@
 <script setup>
 import { useAllStore } from '@/store/all'
+const { $gsap } = useNuxtApp()
 const { globalData, webLoading, isCursor } = toRefs(useAllStore())
+const mainRef = ref(null)
 
+onMounted(() => {
+  if (mainRef.value) {
+    $gsap.fromTo(
+      mainRef.value,
+      {
+        opacity: 0
+      },
+      {
+        opacity: 1,
+        duration: 0.5
+      }
+    )
+  }
+})
 </script>
 
 <template>
-  <div class="layout">
+  <div ref="mainRef" class="layout opacity-0">
     <div class="fixed inset-0 z-[-2] bg-black"></div>
     <CommonCursorPointer v-if="isCursor" />
     <LayoutHeader />

@@ -70,7 +70,7 @@ const experiences = ref(await Promise.all([
           :key="index"
           class="relative flex w-full flex-col pb-24 pl-20 pt-0 md:flex-row md:py-5 md:pl-0"
         >
-          <div data-fade="up" class="absolute left-[12px] top-[30px] flex size-10 items-center justify-center overflow-hidden rounded-full bg-bgc md:left-[205px] md:top-[10px]">
+          <div class="absolute left-[12px] top-[30px] flex size-10 items-center justify-center overflow-hidden rounded-full bg-bgc md:left-[205px] md:top-[10px]">
             <img
               :src="exp.icon"
               :alt="`${exp.company_name} logo`"
