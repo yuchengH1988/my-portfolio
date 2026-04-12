@@ -3,35 +3,72 @@ import { useAllStore } from '~/store/all'
 const { $gsap } = useNuxtApp()
 const { isCursor } = storeToRefs(useAllStore())
 const introRef = ref(null)
-const leftIntroRef = ref(null)
+const rightInfoRef = ref(null)
+const leftInfoRef = ref(null)
 const introTextChars = ref([])
 const introRadiusTween = null
 let introTextTween = null
+let mm = null
 
 const introText = 'Hi, I’m Calvin, a frontend engineer who loves turning design and motion into seamless web experiences. I build interactive, animation-driven websites with a focus on performance, precision, and user flow. My background in hospitality taught me to care about people’s experiences - now I apply that same mindset to the digital world.'
 const introWords = introText.split(' ').map(word => word.split(''))
 
 onMounted(() => {
-  if (!leftIntroRef.value || !introTextChars.value.length) { return }
+  if (!rightInfoRef.value || !introTextChars.value.length) { return }
 
-  introTextTween = $gsap.fromTo(
-    introTextChars.value,
-    {
-      yPercent: 110
-    },
-    {
-      yPercent: 0,
-      duration: 0.8,
-      stagger: 0.02,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: leftIntroRef.value,
-        start: 'top 60%',
-        end: 'top top',
-        scrub: true
+  mm = $gsap.matchMedia()
+  mm.add('(min-width: 1024px)', () => {
+    introTextTween = $gsap.fromTo(
+      introTextChars.value,
+      {
+        yPercent: 110
+      },
+      {
+        yPercent: 0,
+        duration: 0.8,
+        stagger: 0.02,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: rightInfoRef.value,
+          start: 'top 50%',
+          end: 'bottom bottom',
+          scrub: true
+        }
       }
+    )
+
+    return () => {
+      introTextTween?.scrollTrigger?.kill()
+      introTextTween?.kill()
+      introTextTween = null
     }
-  )
+  })
+  mm.add('(max-width: 1023px)', () => {
+    introTextTween = $gsap.fromTo(
+      introTextChars.value,
+      {
+        yPercent: 110
+      },
+      {
+        yPercent: 0,
+        duration: 0.8,
+        stagger: 0.02,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: leftInfoRef.value,
+          start: 'top 50%',
+          end: 'top top',
+          scrub: true
+        }
+      }
+    )
+
+    return () => {
+      introTextTween?.scrollTrigger?.kill()
+      introTextTween?.kill()
+      introTextTween = null
+    }
+  })
 })
 
 onBeforeUpdate(() => {
@@ -39,6 +76,7 @@ onBeforeUpdate(() => {
 })
 
 onBeforeUnmount(() => {
+  mm?.revert()
   introRadiusTween?.scrollTrigger?.kill()
   introRadiusTween?.kill()
   introTextTween?.scrollTrigger?.kill()
@@ -104,14 +142,14 @@ const skills = ref([
 <template>
   <div id="intro" ref="introRef" class="w-screen bg-white/80">
     <div class="set grid w-full grid-cols-1 overflow-visible lg:grid-cols-2">
-      <div ref="leftIntroRef" class="top-0 mb-15 mt-30 flex flex-col justify-center pl-5 pr-10 sm:mt-0 lg:sticky lg:mb-0 lg:h-dvh lg:border-r lg:border-white/80 lg:py-0 xl:pl-0">
-        <span class="inline-block w-fit rounded-full bg-black px-2 text-[18px] uppercase text-white/80 sm:text-[24px] xl:px-4 xl:py-0.5 xl:text-[40px]">
+      <div ref="leftInfoRef" class="top-0 flex  flex-col justify-center py-30 pl-5 pr-10 sm:mt-0 lg:sticky lg:mb-0 lg:h-dvh lg:border-r lg:border-white/80 lg:py-0 xl:pl-0">
+        <span class="inline-block w-fit rounded-full bg-black px-2 text-[18px] uppercase text-white/80 sm:text-[24px] xl:px-4 xl:py-0.5 xl:text-[32px]">
           Introduction
         </span>
         <h2 class="text-[52px] font-black uppercase text-white sm:text-[80px] xl:text-[100px]">
           Overview
         </h2>
-        <p class="text-[16px] font-medium leading-[1.6] text-black/50 sm:text-[20px] sm:leading-[1.4] xl:text-[28px]">
+        <p class="text-[16px] font-medium leading-[1.6] text-black/50 sm:leading-[1.4] lg:w-4/5 lg:text-[20px]">
           <span
             v-for="(word, wordIndex) in introWords"
             :key="`${word.join('')}-${wordIndex}`"
@@ -134,12 +172,13 @@ const skills = ref([
         class="overflow-y-auto overflow-x-hidden pb-20 pl-5 pt-0 lg:pb-40 lg:pl-10 lg:pt-30"
       >
         <div
+          ref="rightInfoRef"
           class="mb-5 flex flex-col gap-5  font-bold uppercase leading-[0.8] lg:mb-0"
         >
           <h3
             data-fade="up"
             class="mb-2 text-[50px] duration-300 sm:text-[40px] md:mb-8 md:text-[76px] lg:mb-0 lg:text-[60px] xl:text-[80px]"
-            :class="isCursor && 'hover:translate-x-10 hover:font-light'"
+            :class="isCursor && 'hover:ml-10 hover:font-light'"
           >
             Technical<br class="sm:hidden lg:inline-block" /><span class="sm:mx-2 lg:hidden"></span>Skills
           </h3>
@@ -158,7 +197,8 @@ const skills = ref([
               v-for="(item, i) in list"
               :key="i"
               data-fade="right"
-              class="pl-7 text-[36px] text-black/40 duration-300 hover:translate-x-10 hover:font-light sm:pl-14 sm:text-[40px]  xl:text-[64px]"
+              class="pl-7 text-[36px] text-black/40 duration-300 sm:pl-14 sm:text-[40px]  xl:text-[64px]"
+              :class="isCursor && 'hover:ml-10 hover:font-light'"
             >
               {{ item }}
             </span>
