@@ -18,28 +18,6 @@ const { isCursor } = storeToRefs(useAllStore())
 
 const selectedData = ref([
   {
-    title: 'Formosa Adventure (3D Web Experience)',
-    description: 'Interactive 3D experience for National Museum of Taiwan History',
-    highlight: [
-      'Three.js 3D interaction',
-      'Nuxt architecture refactor',
-      'WebGL performance optimization'
-    ],
-    image: 'deer.webp',
-    link: 'https://taiwanoverseas.nmth.gov.tw/collection-event/'
-  },
-  {
-    title: 'Time Traveler (Interactive Campaign Site)',
-    description: 'Campaign website for National Archives of Taiwan',
-    highlight: [
-      'Advanced GSAP scroll animation',
-      'SVG + timeline control',
-      'High-performance scroll handling'
-    ],
-    image: 'nation-archive.webp',
-    link: 'https://www.archivesgames.tw/'
-  },
-  {
     title: 'Generative Art Collection (p5.js)',
     description: 'Creative coding experiments on OpenProcessing',
     highlight: [
@@ -60,17 +38,6 @@ const selectedData = ref([
     ],
     image: 'chine-fa.webp',
     link: 'https://taiwanoverseas.nmth.gov.tw/sino-french-war'
-  },
-  {
-    title: 'YiChiu Group Website',
-    description: 'Corporate website with multi-language support',
-    highlight: [
-      'Horizontal scroll interaction',
-      'Dark/Light theme switching',
-      'i18n implementation'
-    ],
-    image: 'yichiu.webp',
-    link: 'https://www.yico.tw/'
   },
   {
     title: 'Bai Bai 1.0 (CMS + Animation)',
