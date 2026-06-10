@@ -13,7 +13,7 @@ const experiences = ref(await Promise.all([
     title: 'Frontend Engineer',
     company_name: 'Block Studio',
     icon: await getImageUrl('blockstudio.png'),
-    date: 'Feb 2025 – Present',
+    date: 'Feb 2025 – Jun 2026',
     points: [
       'Delivered a 90+ page enterprise website, plus 2 mid-scale and 5 small-scale client sites using Nuxt + WordPress CMS.',
       'Implemented advanced animation solutions and optimized scroll-based interactions for smooth performance.',

@@ -1,17 +1,13 @@
 <script setup>
 import { useAllStore } from '~/store/all'
-import imgNation from '~/assets/images/nation-archive.webp'
 import imgSino from '~/assets/images/chine-fa.webp'
-import imgYichiu from '~/assets/images/yichiu.webp'
 import imgPaipai from '~/assets/images/paipai.webp'
-import imgDeer from '~/assets/images/deer.webp'
 import imgOpenProcess from '~/assets/images/openprocess.webp'
-import imgNationMobile from '~/assets/images/nation-archive-m.webp'
 import imgSinoMobile from '~/assets/images/chine-fa-m.webp'
-import imgYichiuMobile from '~/assets/images/yichiu-m.webp'
 import imgPaipaiMobile from '~/assets/images/paipai-m.webp'
-import imgDeerMobile from '~/assets/images/deer-m.webp'
 import imgOpenProcessMobile from '~/assets/images/openprocess-m.webp'
+import imgFenc from '~/assets/images/fenc.webp'
+import imgFencMobile from '~/assets/images/fenc-mobile.webp'
 
 const { $gsap, $ScrollTrigger } = useNuxtApp()
 const { isCursor } = storeToRefs(useAllStore())
@@ -49,6 +45,17 @@ const selectedData = ref([
     ],
     image: 'paipai.webp',
     link: 'https://paipai.blog/'
+  },
+  {
+    title: 'Far Eastern New Century (Global Corporate Website)',
+    description: 'Contributed to the frontend development of a large-scale multilingual corporate website',
+    highlight: [
+      'Supported the delivery of a 90+ page enterprise platform',
+      'Built reusable components and page templates',
+      'Integrated WordPress CMS with i18n support'
+    ],
+    image: 'fenc.webp',
+    link: 'https://www.fenc.com/'
   }
 ])
 
@@ -57,21 +64,17 @@ const slideRefs = ref([])
 let revealTimeline = null
 
 const imageMap = {
-  'nation-archive.webp': imgNation,
   'chine-fa.webp': imgSino,
-  'yichiu.webp': imgYichiu,
   'paipai.webp': imgPaipai,
   'openprocess.webp': imgOpenProcess,
-  'deer.webp': imgDeer
+  'fenc.webp': imgFenc
 }
 
 const mobileImageMap = {
-  'nation-archive.webp': imgNationMobile,
   'chine-fa.webp': imgSinoMobile,
-  'yichiu.webp': imgYichiuMobile,
   'paipai.webp': imgPaipaiMobile,
   'openprocess.webp': imgOpenProcessMobile,
-  'deer.webp': imgDeerMobile
+  'fenc-mobile.webp': imgFencMobile
 }
 
 const cleanAssetUrl = url => String(url).split('?')[0]
@@ -141,7 +144,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="rootRef" class="relative mt-16 h-[600dvh] w-full rounded-[50px]">
+  <div ref="rootRef" class="relative mt-16 h-[400dvh] w-full rounded-[50px]">
     <div class="relative h-dvh overflow-hidden">
       <article
         v-for="(item, idx) in selectedData"
