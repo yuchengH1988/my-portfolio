@@ -54,12 +54,10 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
         { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' },
         { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' },
-        { rel: 'preload', as: 'style', href: 'https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@600;700&family=Noto+Sans+TC:wght@400;500&family=Roboto:wght@400;500;700&display=swap' },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@200..800&display=swap'
-        },
-        { rel: 'stylesheet', media: 'print', onload: 'this.media="all"', href: 'https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@600;700&family=Noto+Sans+TC:wght@400;500&family=Roboto:wght@400;500;700&display=swap' }
+          href: 'https://fonts.googleapis.com/css2?family=BBH+Hegarty&family=Forum&family=Noto+Sans+TC:wght@400;500;700;900&display=swap'
+        }
       ],
       script: [
         // 對應到 component 的 Atom/Video.vue 的 youtube iframe api

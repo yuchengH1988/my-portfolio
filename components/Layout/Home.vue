@@ -37,12 +37,12 @@ onMounted(() => {
 <template>
   <section id="home" class="relative flex h-sh w-screen flex-col items-center justify-center overflow-visible sm:h-dvh">
     <CommonP5Hero class="z-[-1]" />
-    <div class="z-[1] text-center font-bold uppercase text-white">
-      <div ref="wordsRef" class="flex flex-col text-[40px] leading-[0.9] md:flex-row md:text-[64px] lg:text-[86px] xl:text-[100px]">
+    <div class="z-[1] text-center uppercase text-white">
+      <div ref="wordsRef" class="text-display-2 flex flex-col md:flex-row">
         <span>CODE</span><span>．</span><span>DESIGN</span><span>．</span><span>FLOW</span>
       </div>
       <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-400 sm:bottom-[20%] md:bottom-20">
-        <h1 ref="nameRef" class="mt-10 text-[14px] sm:text-[20px]">
+        <h1 ref="nameRef" class="text-body-2 mt-10">
           YU CHENG HUANG<br />
           FrontEnd Developer
         </h1>

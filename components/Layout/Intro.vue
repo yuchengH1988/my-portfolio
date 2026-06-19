@@ -142,13 +142,13 @@ const skills = ref([
   <div id="intro" ref="introRef" class="w-screen bg-white/80">
     <div class="set grid w-full grid-cols-1 overflow-visible lg:grid-cols-2">
       <div ref="leftInfoRef" class="top-0 flex  flex-col justify-center py-30 pl-5 pr-10 sm:mt-0 lg:sticky lg:mb-0 lg:h-dvh lg:border-r lg:border-white/80 lg:py-0 xl:pl-0">
-        <span class="inline-block w-fit rounded-full bg-black px-2 text-[18px] uppercase text-white/80 sm:text-[24px] xl:px-4 xl:py-0.5 xl:text-[32px]">
+        <span class="text-head-1 inline-block w-fit rounded-full bg-black px-2 uppercase text-white/80 xl:px-4 xl:py-0.5">
           Introduction
         </span>
-        <h2 class="text-[52px] font-black uppercase text-white sm:text-[80px] xl:text-[100px]">
+        <h2 class="text-display-2 uppercase text-white">
           Overview
         </h2>
-        <p class="text-[16px] font-medium leading-[1.6] text-black/50 sm:leading-[1.4] lg:w-4/5 lg:text-[20px]">
+        <p class="text-body-1 text-black/50 lg:w-4/5">
           <span
             v-for="(word, wordIndex) in introWords"
             :key="`${word.join('')}-${wordIndex}`"
@@ -172,11 +172,11 @@ const skills = ref([
       >
         <div
           ref="rightInfoRef"
-          class="mb-5 flex flex-col gap-5  font-bold uppercase leading-[0.8] lg:mb-0"
+          class="mb-5 flex flex-col gap-5 uppercase lg:mb-0"
         >
           <h3
             data-fade="up"
-            class="mb-2 text-[50px] duration-300 sm:text-[40px] md:mb-8 md:text-[76px] lg:mb-0 lg:text-[60px] xl:text-[80px]"
+            class="text-display-3 mb-2 duration-300 md:mb-8 lg:mb-0"
             :class="isCursor && 'hover:ml-10 hover:font-light'"
           >
             Technical<br class="sm:hidden lg:inline-block" /><span class="sm:mx-2 lg:hidden"></span>Skills
@@ -188,7 +188,7 @@ const skills = ref([
           >
             <h4
               data-fade="left"
-              class="mb-1 text-[40px] text-black/70 duration-300 hover:translate-x-10 hover:font-light  xl:text-[64px]"
+              class="text-display-4 mb-1 text-black/70 duration-300 hover:translate-x-10 hover:font-light"
             >
               {{ title }}
             </h4>
@@ -196,7 +196,7 @@ const skills = ref([
               v-for="(item, i) in list"
               :key="i"
               data-fade="right"
-              class="pl-7 text-[36px] text-black/40 duration-300 sm:pl-14 sm:text-[40px]  xl:text-[64px]"
+              class="text-display-4 pl-7 text-black/40 duration-300 sm:pl-14"
               :class="isCursor && 'hover:ml-10 hover:font-light'"
             >
               {{ item }}

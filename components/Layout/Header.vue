@@ -115,7 +115,7 @@ onBeforeUnmount(() => {
     ref="headerRef"
     class="fixed top-0 z-100 w-full overflow-hidden bg-black/30 px-0 opacity-0"
   >
-    <div class="set relative flex w-full items-center justify-between  text-[18px] text-white">
+    <div class="text-body-2 set relative flex w-full items-center justify-between text-white">
       <CommonButtonBox
         label="CALVIN"
         title="CALVIN"

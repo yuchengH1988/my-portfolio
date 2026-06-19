@@ -11,7 +11,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="font-Atkinson">
+  <div class="font-default">
     <LayoutHome />
     <LayoutIntro />
     <LayoutWork />

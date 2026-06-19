@@ -170,17 +170,17 @@ onBeforeUnmount(() => {
           </div>
           <div class="relative flex w-[min(100%,370px)] flex-col px-4 py-2 text-left font-bold text-black lg:w-[480px]">
             <AtomBgGlass />
-            <span class="z-[2] text-[14px] leading-[2] lg:text-[24px]">
+            <span class="text-body-2 z-[2] leading-[2]">
               {{ String(idx + 1).padStart(2, '0') }}
             </span>
             <div class="z-[2] flex flex-col gap-2">
-              <h3 class="text-[20px] leading-[0.9] lg:text-[32px]">
+              <h3 class="text-head-2">
                 {{ item.title }}
               </h3>
-              <p class="text-sm uppercase">
+              <p class="text-body-3 uppercase">
                 {{ item.description }}
               </p>
-              <p class="text-[12px] lg:text-[16px]">
+              <p class="text-body-3">
                 <span v-for="(point, pidx) in item.highlight" :key="pidx">
                   - {{ point }}<br v-if="pidx < item.highlight.length - 1" />
                 </span>

@@ -10,11 +10,11 @@ const links = ref([
 <template>
   <section
     id="contact"
-    class="w-screen overflow-hidden bg-bgc text-[40px] font-extra-bold uppercase leading-[1] text-black sm:text-[24px] md:text-[44px] lg:text-[60px]"
+    class="text-display-5 w-screen overflow-hidden bg-bgc uppercase text-black"
   >
     <div data-fade="up" class="flex w-full flex-col px-5 pb-15 pt-10 sm:flex-row lg:px-10">
       <h2 class="mb-30 flex w-full flex-col justify-between sm:mb-0 sm:w-1/2 sm:border-r sm:border-black">
-        <span class="text-[16px] text-black/50">YuCheng Huang / Calvin</span>
+        <span class="text-body-3 text-black/50">YuCheng Huang / Calvin</span>
         <span>contact me</span>
       </h2>
       <div class="flex w-full flex-col  items-end sm:w-1/2 sm:items-start sm:pl-5">

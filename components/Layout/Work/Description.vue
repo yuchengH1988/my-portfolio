@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="relative flex h-screen w-full flex-col items-center justify-center sm:h-dvh">
     <CommonP5Work class="z-[-1]" />
-    <p ref="desRef" class="w-[560px] max-w-[80vw] rounded-3xl p-3 text-center text-[12px] font-normal leading-[1.8] text-bgc sm:text-xl md:p-5 lg:w-[920px] lg:text-[28px]">
+    <p ref="desRef" class="text-body-4 w-[560px] max-w-[80vw] rounded-3xl p-3 text-center text-bgc md:p-5 lg:w-[920px]">
       <span
         v-for="(word, wordIndex) in workWords"
         :key="`${word}-${wordIndex}`"

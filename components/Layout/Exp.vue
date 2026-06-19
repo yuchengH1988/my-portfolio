@@ -55,7 +55,7 @@ const experiences = ref(await Promise.all([
 <template>
   <section id="exp" class="w-screen overflow-hidden text-white">
     <div class="set w-full pt-10 text-bgc/90">
-      <h2 data-fade="up" class="text-[52px] font-extra-bold uppercase leading-[0.9] sm:text-[68px] md:text-[80px]">
+      <h2 data-fade="up" class="text-display-3 uppercase">
         Work Experience
       </h2>
       <div class="relative mx-auto mt-15 flex min-h-dvh w-full flex-col items-center pb-[300px] pt-10 md:mt-20 md:w-[85vw] lg:w-[70vw]">
@@ -77,17 +77,17 @@ const experiences = ref(await Promise.all([
               :class="[index === 0 || index === 3 ? 'size-[80%]' :'size-full']"
             />
           </div>
-          <p data-fade="left" class="w-[154px] md:mr-30 md:w-40 md:text-right">
+          <p data-fade="left" class="text-body-3 w-[154px] md:mr-30 md:w-40 md:text-right">
             {{ exp.date }}
           </p>
           <div data-fade="right" class="flex w-full flex-col pt-8 md:w-[calc(100%-280px)] md:pt-0">
-            <p class="text-xl font-extra-bold">
+            <p class="text-head-4 font-extra-bold">
               {{ exp.title }}
             </p>
-            <p class=" mt-3 w-fit bg-bgc px-2 py-1 text-sm font-extra-bold text-black">
+            <p class="text-body-3 mt-3 w-fit bg-bgc px-2 py-1 font-extra-bold text-black">
               {{ exp.company_name }}
             </p>
-            <ul class="mt-5 list-inside list-disc break-words md:ml-5">
+            <ul class="text-body-3 mt-5 list-inside list-disc break-words md:ml-5">
               <li v-for="(point, index) in exp.points" :key="index">
                 {{ point }}
               </li>
