@@ -12,7 +12,7 @@ const links = ref(contactContent.links)
   >
     <div data-fade="up" class="flex w-full flex-col px-5 pb-15 pt-10 sm:flex-row lg:px-10">
       <h2 class="mb-30 flex w-full flex-col justify-between sm:mb-0 sm:w-1/2 sm:border-r sm:border-black">
-        <span class="text-body-3 text-black">{{ contactContent.name }}</span>
+        <span class="text-body-1 text-black">{{ contactContent.name }}</span>
         <span>{{ contactContent.title }}</span>
       </h2>
       <div class="flex w-full flex-col  items-end sm:w-1/2 sm:items-start sm:pl-5">

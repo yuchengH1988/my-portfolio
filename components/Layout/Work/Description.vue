@@ -2,7 +2,7 @@
 import siteContent from '~/locales/site.json'
 
 const { $gsap } = useNuxtApp()
-const desRef = ref(null)
+const sectionRef = ref(null)
 const workWordEls = ref([])
 let workTextTween = null
 
@@ -10,7 +10,7 @@ const workText = siteContent.work.description
 const workWords = workText.split(' ')
 
 onMounted(() => {
-  if (!desRef.value || !workWordEls.value.length) { return }
+  if (!sectionRef.value || !workWordEls.value.length) { return }
 
   $gsap.set(workWordEls.value, {
     opacity: 0,
@@ -36,12 +36,15 @@ onMounted(() => {
     rotate: 0,
     ease: 'none',
     scrollTrigger: {
-      trigger: desRef.value,
-      start: 'top 120%',
-      end: 'top 50%',
-      scrub: true
+      trigger: sectionRef.value,
+      start: 'top 85%',
+      end: 'center center',
+      scrub: true,
+      invalidateOnRefresh: true
     }
   })
+
+  workTextTween.scrollTrigger?.refresh()
 })
 
 onBeforeUpdate(() => {
@@ -55,7 +58,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="relative flex h-screen w-full flex-col items-center justify-center sm:h-dvh">
+  <div ref="sectionRef" class="relative flex h-screen w-full flex-col items-center justify-center sm:h-dvh">
     <CommonP5Work class="z-[-1]" />
     <p ref="desRef" class="text-body-4 w-[560px] max-w-[80vw] rounded-3xl p-3 text-center text-bgc md:p-5 lg:w-[920px]">
       <span
