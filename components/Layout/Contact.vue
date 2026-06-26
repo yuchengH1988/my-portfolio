@@ -1,10 +1,8 @@
 <script setup>
-const links = ref([
-  { name: 'Email', url: 'mailto:calvin.huang.dev@gmail.com' },
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/yu-cheng-huang-870585138/' },
-  { name: 'GitHub', url: 'https://github.com/yuchengH1988' },
-  { name: 'Open Process', url: 'https://openprocessing.org/user/436847/#sketches' }
-])
+import siteContent from '~/locales/site.json'
+
+const contactContent = siteContent.contact
+const links = ref(contactContent.links)
 </script>
 
 <template>
@@ -14,15 +12,15 @@ const links = ref([
   >
     <div data-fade="up" class="flex w-full flex-col px-5 pb-15 pt-10 sm:flex-row lg:px-10">
       <h2 class="mb-30 flex w-full flex-col justify-between sm:mb-0 sm:w-1/2 sm:border-r sm:border-black">
-        <span class="text-body-3 text-black/50">YuCheng Huang / Calvin</span>
-        <span>contact me</span>
+        <span class="text-body-3 text-black">{{ contactContent.name }}</span>
+        <span>{{ contactContent.title }}</span>
       </h2>
       <div class="flex w-full flex-col  items-end sm:w-1/2 sm:items-start sm:pl-5">
         <a
           v-for="(link, index) in links"
           :key="index"
           :href="link.url"
-          :title="`${link.name}連結`"
+          :title="link.title"
           target="_blank"
           rel="noopener noreferrer"
           class="relative w-fit  text-black transition duration-700 hover:text-black/30"

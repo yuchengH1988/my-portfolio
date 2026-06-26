@@ -1,4 +1,6 @@
 <script setup>
+import siteContent from '~/locales/site.json'
+
 const getImageUrl = async (path) => {
   try {
     return await useAsset(`company/${path}`)
@@ -8,55 +10,20 @@ const getImageUrl = async (path) => {
   }
 }
 
-const experiences = ref(await Promise.all([
-  {
-    title: 'Frontend Engineer',
-    company_name: 'Block Studio',
-    icon: await getImageUrl('blockstudio.png'),
-    date: 'Feb 2025 – Jun 2026',
-    points: [
-      'Delivered a 90+ page enterprise website, plus 2 mid-scale and 5 small-scale client sites using Nuxt + WordPress CMS.',
-      'Implemented advanced animation solutions and optimized scroll-based interactions for smooth performance.',
-      'Supported i18n, A11y compliance, and security best practices, collaborating closely with designers and PMs.'
-    ]
-  },
-  {
-    title: 'Node. Js Engineer',
-    company_name: 'Bat Mobile Inc',
-    icon: await getImageUrl('bat.png'),
-    date: 'Aug 2021 - Jan 2025',
-    points: [
-      'Enhanced platform features across web/iOS/Android with focus on performance and maintainability.',
-      'Upgraded messaging system into threaded group conversations with database redesign.',
-      'Separated backend APIs from full-stack system, optimized DB architecture, and authored ~75% of technical documentation.',
-      'Expanded operations platform with reporting, blocking, vote/board settings, account history, notifications, and scheduling.'
-    ]
-  },
-  {
-    title: 'Manager',
-    company_name: 'CAMA coffee',
-    icon: await getImageUrl('cama.png'),
-    date: 'Oct 2017 - Jul 2020',
-    points: [
-      'Managed 3 branches and 10+ staff, strengthening leadership and communication.'
-    ]
-  },
-  {
-    title: 'Other Experience',
-    company_name: 'Hospitality & Surveying',
-    icon: await getImageUrl('other.png'),
-    date: '2013 – 2017',
-    points: [
-      '8 years in hospitality & 1 year in surveying; developed strong teamwork and problem-solving abilities.'
-    ]
-  }]))
+const experienceContent = siteContent.experience
+const experiences = ref(await Promise.all(
+  experienceContent.items.map(async item => ({
+    ...item,
+    icon: await getImageUrl(item.icon)
+  }))
+))
 
 </script>
 <template>
   <section id="exp" class="w-screen overflow-hidden text-white">
     <div class="set w-full pt-10 text-bgc/90">
       <h2 data-fade="up" class="text-display-3 uppercase">
-        Work Experience
+        {{ experienceContent.title }}
       </h2>
       <div class="relative mx-auto mt-15 flex min-h-dvh w-full flex-col items-center pb-[300px] pt-10 md:mt-20 md:w-[85vw] lg:w-[70vw]">
         <div data-fade="left" class="absolute inset-y-0 left-8 w-[1px] bg-white md:left-[225px]">
@@ -73,7 +40,7 @@ const experiences = ref(await Promise.all([
           <div class="absolute left-[12px] top-[30px] flex size-10 items-center justify-center overflow-hidden rounded-full bg-bgc md:left-[205px] md:top-[10px]">
             <img
               :src="exp.icon"
-              :alt="`${exp.company_name} logo`"
+              :alt="`${exp.companyName} logo`"
               :class="[index === 0 || index === 3 ? 'size-[80%]' :'size-full']"
             />
           </div>
@@ -85,7 +52,7 @@ const experiences = ref(await Promise.all([
               {{ exp.title }}
             </p>
             <p class="text-body-3 mt-3 w-fit bg-bgc px-2 py-1 font-extra-bold text-black">
-              {{ exp.company_name }}
+              {{ exp.companyName }}
             </p>
             <ul class="text-body-3 mt-5 list-inside list-disc break-words md:ml-5">
               <li v-for="(point, index) in exp.points" :key="index">

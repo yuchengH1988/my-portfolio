@@ -8,56 +8,12 @@ import imgPaipaiMobile from '~/assets/images/paipai-m.webp'
 import imgOpenProcessMobile from '~/assets/images/openprocess-m.webp'
 import imgFenc from '~/assets/images/fenc.webp'
 import imgFencMobile from '~/assets/images/fenc-mobile.webp'
+import siteContent from '~/locales/site.json'
 
 const { $gsap, $ScrollTrigger } = useNuxtApp()
 const { isCursor } = storeToRefs(useAllStore())
 
-const selectedData = ref([
-  {
-    title: 'Generative Art Collection (p5.js)',
-    description: 'Creative coding experiments on OpenProcessing',
-    highlight: [
-      'Generative visuals with p5.js',
-      '30+ interactive sketches',
-      'Creative coding exploration'
-    ],
-    image: 'openprocess.webp',
-    link: 'https://openprocessing.org/user/436847#sketches'
-  },
-  {
-    title: 'Sino-French War (Interactive Story)',
-    description: 'Narrative web experience for NMTH',
-    highlight: [
-      'Scroll-driven storytelling',
-      'SVG + animation integration',
-      'Multi-section interaction design'
-    ],
-    image: 'chine-fa.webp',
-    link: 'https://taiwanoverseas.nmth.gov.tw/sino-french-war'
-  },
-  {
-    title: 'Bai Bai 1.0 (CMS + Animation)',
-    description: 'Content-driven site built with WordPress + Nuxt',
-    highlight: [
-      'SVG animation with GSAP',
-      'Multi-language CMS integration',
-      'Legacy site optimization'
-    ],
-    image: 'paipai.webp',
-    link: 'https://paipai.blog/'
-  },
-  {
-    title: 'Far Eastern New Century (Global Corporate Website)',
-    description: 'Contributed to the frontend development of a large-scale multilingual corporate website',
-    highlight: [
-      'Supported the delivery of a 90+ page enterprise platform',
-      'Built reusable components and page templates',
-      'Integrated WordPress CMS with i18n support'
-    ],
-    image: 'fenc.webp',
-    link: 'https://www.fenc.com/'
-  }
-])
+const selectedData = ref(siteContent.work.projects)
 
 const rootRef = ref(null)
 const slideRefs = ref([])
@@ -154,33 +110,32 @@ onBeforeUnmount(() => {
         :style="{ zIndex: idx + 1 }"
       >
         <div
-          class="group relative isolate flex h-[calc(100dvh-64px)] flex-col items-start justify-center gap-8 overflow-hidden rounded-[32px] px-3 lg:flex-row lg:items-center lg:justify-between lg:px-5"
+          class="group relative isolate flex h-[calc(100dvh-64px)] flex-col items-center justify-center gap-2 overflow-hidden rounded-[32px] px-3 lg:px-5"
         >
           <div class="pointer-events-none absolute inset-0 z-0">
             <picture class="block size-full">
               <source media="(max-width: 539px)" :srcset="mobileImgUrl(item.image)" />
               <img
                 :src="imgUrl(item.image)"
-                :alt="`${item.title}圖片` || `slide-${idx}`"
-                class="size-full object-cover opacity-80 transition-all duration-500"
-                :class="[isCursor ? 'sm:blur-[0px] sm:group-hover:blur-[2px]' : 'sm:blur-[2px]']"
+                :alt="item.alt || item.title"
+                class="size-full object-cover opacity-85 blur-[2px] transition-all duration-500"
               />
             </picture>
-            <div v-if="isCursor" class="absolute inset-0 bg-black/20 opacity-100 transition-opacity duration-500 group-hover:opacity-0" />
+            <div v-if="isCursor" class="absolute inset-0 bg-black/30 opacity-100 transition-opacity duration-500 group-hover:opacity-10" />
           </div>
-          <div class="relative flex w-[min(100%,370px)] flex-col px-4 py-2 text-left font-bold text-black lg:w-[480px]">
+          <div class="relative flex h-[30vh] w-[80vw] flex-col px-4 py-2 text-left text-black lg:w-[50vw]">
             <AtomBgGlass />
-            <span class="text-body-2 z-[2] leading-[2]">
+            <span class="text-body-2 z-[2] text-right leading-[2]">
               {{ String(idx + 1).padStart(2, '0') }}
             </span>
-            <div class="z-[2] flex flex-col gap-2">
-              <h3 class="text-head-2">
+            <div class="z-[2] flex flex-1 flex-col items-center justify-center gap-2">
+              <h3 class="text-head-2 text-center">
                 {{ item.title }}
               </h3>
-              <p class="text-body-3 uppercase">
+              <p class="text-body-2 text-center uppercase">
                 {{ item.description }}
               </p>
-              <p class="text-body-3">
+              <p class="text-body-2">
                 <span v-for="(point, pidx) in item.highlight" :key="pidx">
                   - {{ point }}<br v-if="pidx < item.highlight.length - 1" />
                 </span>
@@ -192,20 +147,25 @@ onBeforeUnmount(() => {
             :href="item.link"
             target="_blank"
             rel="noopener noreferrer"
-            class="z-10 relative ml-auto block aspect-square w-[min(520px,100%)] rounded-3xl sm:aspect-[2] lg:ml-0 lg:w-full lg:flex-1"
+            class="group/link relative block w-[80vw] overflow-hidden rounded-xl lg:w-[50vw]"
           >
             <picture class="block size-full">
               <source media="(max-width: 539px)" :srcset="mobileImgUrl(item.image)" />
               <img
                 :src="imgUrl(item.image)"
-                :alt="`${item.title}圖片` || `slide-${idx}`"
-                class="size-full rounded-3xl object-cover transition-all duration-500"
+                :alt="item.alt || item.title"
+                class="size-full object-contain transition-all duration-500"
                 :class="[
                   isCursor ? 'sm:blur-[2px] sm:grayscale sm:group-hover:blur-0 sm:group-hover:grayscale-0' : 'blur-0',
                   [2, 3].includes(idx) && 'object-left sm:object-center'
                 ]"
               />
             </picture>
+            <span
+              class="pointer-events-none absolute bottom-3 right-3 z-[2] flex size-10 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white shadow-[0_8px_24px_rgba(0,0,0,0.22)] backdrop-blur-md transition-transform duration-300 group-hover/link:scale-110"
+            >
+              <AtomIcon name="external-link" class="size-5" />
+            </span>
           </a>
         </div>
       </article>

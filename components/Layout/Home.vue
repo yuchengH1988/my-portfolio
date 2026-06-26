@@ -1,7 +1,10 @@
 <script setup>
+import siteContent from '~/locales/site.json'
+
 const { $gsap } = useNuxtApp()
 const wordsRef = ref(null)
 const nameRef = ref(null)
+const homeContent = siteContent.home
 onMounted(() => {
   nextTick(() => {
     const spans = wordsRef.value?.querySelectorAll('span')
@@ -39,12 +42,14 @@ onMounted(() => {
     <CommonP5Hero class="z-[-1]" />
     <div class="z-[1] text-center uppercase text-white">
       <div ref="wordsRef" class="text-display-2 flex flex-col md:flex-row">
-        <span>CODE</span><span>．</span><span>DESIGN</span><span>．</span><span>FLOW</span>
+        <template v-for="(word, index) in homeContent.heroWords" :key="word">
+          <span>{{ word }}</span><span v-if="index < homeContent.heroWords.length - 1">{{ homeContent.heroSeparator }}</span>
+        </template>
       </div>
-      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-400 sm:bottom-[20%] md:bottom-20">
-        <h1 ref="nameRef" class="text-body-2 mt-10">
-          YU CHENG HUANG<br />
-          FrontEnd Developer
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white sm:bottom-[20%] md:bottom-20">
+        <h1 ref="nameRef" class="text-body-2 mt-10 w-max">
+          {{ homeContent.name }}<br />
+          {{ homeContent.role }}
         </h1>
       </div>
     </div>

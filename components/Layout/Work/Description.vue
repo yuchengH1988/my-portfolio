@@ -1,10 +1,12 @@
 <script setup>
+import siteContent from '~/locales/site.json'
+
 const { $gsap } = useNuxtApp()
 const desRef = ref(null)
 const workWordEls = ref([])
 let workTextTween = null
 
-const workText = 'Over the past 4 years, I have delivered 30+ web projects, including corporate sites, exhibition microsites, and animation-driven experiences. Many involved WordPress CMS integration, i18n, and performance tuning, strengthening my capabilities in motion UI, scalable architecture, and cross-team collaboration.'
+const workText = siteContent.work.description
 const workWords = workText.split(' ')
 
 onMounted(() => {

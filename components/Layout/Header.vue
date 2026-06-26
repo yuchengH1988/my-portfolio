@@ -1,4 +1,6 @@
 <script setup>
+import siteContent from '~/locales/site.json'
+
 const { $lenis, $gsap, $ScrollTrigger } = useNuxtApp()
 const headerRef = ref(null)
 const isMenuOpen = ref(false)
@@ -6,7 +8,8 @@ let headerTrigger = null
 let introTimeline = null
 let mm = null
 
-const navItems = ['INTRO', 'WORK', 'CONTACT']
+const headerContent = siteContent.header
+const navItems = headerContent.nav
 const HEADER_BREAKPOINTS = [
   ['(max-width: 767px)', 'calc(100vw - 24px)', 0],
   ['(min-width: 768px)', '640px', 20]
@@ -117,8 +120,8 @@ onBeforeUnmount(() => {
   >
     <div class="text-body-2 set relative flex w-full items-center justify-between text-white">
       <CommonButtonBox
-        label="CALVIN"
-        title="CALVIN"
+        :label="headerContent.brand"
+        :title="headerContent.brand"
         class="cursor-pointer py-2 transition duration-200 hover:text-white/40"
         @click="scrollTo('home')"
       />
@@ -134,12 +137,12 @@ onBeforeUnmount(() => {
           v-if="isMenuOpen"
           class="smd:hidden absolute -right-5 top-1/2 z-[101] flex h-12  -translate-y-1/2 items-center border border-white bg-white px-5 pr-[90px] text-black shadow-[0_10px_30px_rgba(0,0,0,0.18)]"
         >
-          <template v-for="item in navItems" :key="`mobile-${item}`">
+          <template v-for="item in navItems" :key="`mobile-${item.target}`">
             <CommonButtonBox
-              :label="item"
-              :title="item"
+              :label="item.label"
+              :title="item.label"
               class="cursor-pointer px-3 py-2 transition duration-200 hover:text-black/40"
-              @click="scrollTo(item.toLowerCase())"
+              @click="scrollTo(item.target)"
             />
           </template>
         </nav>
@@ -147,19 +150,19 @@ onBeforeUnmount(() => {
       <nav
         class="hidden items-center gap-5 sm:gap-15 md:flex"
       >
-        <template v-for="item in navItems" :key="item">
+        <template v-for="item in navItems" :key="item.target">
           <CommonButtonBox
-            :label="item"
-            :title="item"
+            :label="item.label"
+            :title="item.label"
             class="cursor-pointer py-2 transition duration-200 hover:text-white/40"
-            @click="scrollTo(item.toLowerCase())"
+            @click="scrollTo(item.target)"
           >
           </CommonButtonBox>
         </template>
       </nav>
       <button
         type="button"
-        aria-label="Toggle menu"
+        :aria-label="headerContent.menuToggleLabel"
         class="relative z-[102] flex h-12 w-12 items-center justify-center md:hidden"
         @click="toggleMenu"
       >

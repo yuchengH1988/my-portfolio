@@ -1,4 +1,6 @@
 <script setup>
+import siteContent from '~/locales/site.json'
+
 const props = defineProps({
   title: {
     type: String,
@@ -10,6 +12,7 @@ const props = defineProps({
   }
 })
 const { title, link } = toRefs(props)
+const uiContent = siteContent.ui
 </script>
 <template>
   <div class="flex flex-col space-y-8 rounded-lg border border-gray-300 bg-white px-6 pb-16 pt-10 duration-300">
@@ -19,7 +22,7 @@ const { title, link } = toRefs(props)
           {{ title }}
         </h3>
         <nuxt-link v-if="link" :to="link" target="_blank" class="text-link-1 text-gray-700 hover:text-txt-core">
-          設計稿
+          {{ uiContent.designFile }}
         </nuxt-link>
       </div>
       <div v-if="$slots.head" class="text-body-3 space-y-4 text-txt-700">

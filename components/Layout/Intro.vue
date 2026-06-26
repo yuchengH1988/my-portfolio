@@ -1,5 +1,7 @@
 <script setup>
 import { useAllStore } from '~/store/all'
+import siteContent from '~/locales/site.json'
+
 const { $gsap } = useNuxtApp()
 const { isCursor } = storeToRefs(useAllStore())
 const rightInfoRef = ref(null)
@@ -9,7 +11,8 @@ const introRadiusTween = null
 let introTextTween = null
 let mm = null
 
-const introText = 'Hi, I’m Calvin, a frontend engineer who loves turning design and motion into seamless web experiences. I build interactive, animation-driven websites with a focus on performance, precision, and user flow. My background in hospitality taught me to care about people’s experiences - now I apply that same mindset to the digital world.'
+const introContent = siteContent.intro
+const introText = introContent.body
 const introWords = introText.split(' ').map(word => word.split(''))
 
 onMounted(() => {
@@ -82,60 +85,7 @@ onBeforeUnmount(() => {
   introTextTween?.kill()
 })
 
-const skills = ref([
-  {
-    title: 'Frontend',
-    list: [
-      'React.js',
-      'Vue.js',
-      'Nuxt',
-      'Tailwind CSS',
-      'Bootstrap',
-      'GSAP',
-      'p5.js',
-      'Three.js'
-    ]
-  },
-  {
-    title: 'Backend / CMS',
-    list: [
-      'Node.js',
-      'Express.js',
-      'WordPress'
-    ]
-  },
-  {
-    title: 'Database',
-    list: [
-      'MongoDB',
-      'MySQL'
-    ]
-  },
-  {
-    title: 'DevOps',
-    list: [
-      'Git',
-      'Docker',
-      'Nginx',
-      'Google Cloud Platform(GCP)',
-      'AWS'
-    ]
-  },
-  {
-    title: 'Testing',
-    list: [
-      'Jest',
-      'Mocha / Chai'
-    ]
-  },
-  {
-    title: 'Languages',
-    list: [
-      'Chinese (Mandarin & Taiwanese)',
-      'English'
-    ]
-  }
-])
+const skills = ref(introContent.skills)
 </script>
 
 <template>
@@ -143,12 +93,12 @@ const skills = ref([
     <div class="set grid w-full grid-cols-1 overflow-visible lg:grid-cols-2">
       <div ref="leftInfoRef" class="top-0 flex  flex-col justify-center py-30 pl-5 pr-10 sm:mt-0 lg:sticky lg:mb-0 lg:h-dvh lg:border-r lg:border-white/80 lg:py-0 xl:pl-0">
         <span class="text-head-1 inline-block w-fit rounded-full bg-black px-2 uppercase text-white/80 xl:px-4 xl:py-0.5">
-          Introduction
+          {{ introContent.eyebrow }}
         </span>
-        <h2 class="text-display-2 uppercase text-white">
-          Overview
+        <h2 class="text-display-2 my-5 uppercase text-white">
+          {{ introContent.title }}
         </h2>
-        <p class="text-body-1 text-black/50 lg:w-4/5">
+        <p class="text-body-1 text-black lg:w-4/5">
           <span
             v-for="(word, wordIndex) in introWords"
             :key="`${word.join('')}-${wordIndex}`"
@@ -179,7 +129,7 @@ const skills = ref([
             class="text-display-3 mb-2 duration-300 md:mb-8 lg:mb-0"
             :class="isCursor && 'hover:ml-10 hover:font-light'"
           >
-            Technical<br class="sm:hidden lg:inline-block" /><span class="sm:mx-2 lg:hidden"></span>Skills
+            {{ introContent.skillsTitle }}
           </h3>
           <div
             v-for="({ title, list }, index) in skills"

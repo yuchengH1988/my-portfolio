@@ -1,0 +1,173 @@
+{
+  "header": {
+    "brand": "CALVIN",
+    "menuToggleLabel": "Toggle menu",
+    "nav": [
+      {
+        "label": "INTRO",
+        "target": "intro"
+      },
+      {
+        "label": "WORK",
+        "target": "work"
+      },
+      {
+        "label": "CONTACT",
+        "target": "contact"
+      }
+    ]
+  },
+  "home": {
+    "heroWords": ["BUILD", "SOLVE", "SHIP"],
+    "heroSeparator": "．",
+    "name": "YU CHENG HUANG",
+    "role": "Frontend-Heavy Fullstack Engineer"
+  },
+  "intro": {
+    "eyebrow": "Introduction",
+    "title": "Overview",
+    "body": "Frontend-heavy Fullstack Engineer with 5 years of experience building enterprise websites, product platforms, ERP systems, and interactive web experiences.\n\nMy primary expertise is in Vue, Nuxt, JavaScript, and Node.js. I enjoy translating complex business requirements into maintainable systems, balancing performance, usability, and long-term scalability.\n\nBeyond implementation, I work closely with designers, PMs, and backend engineers to deliver products that solve real user and business problems.",
+    "skillsTitle": "Technical Skills",
+    "skills": [
+      {
+        "title": "Frontend",
+        "list": ["React.js", "Vue.js", "Nuxt", "Tailwind CSS", "Bootstrap", "GSAP", "p5.js", "Three.js"]
+      },
+      {
+        "title": "Backend / CMS",
+        "list": ["Node.js", "Express.js", "WordPress"]
+      },
+      {
+        "title": "Database",
+        "list": ["MongoDB", "MySQL"]
+      },
+      {
+        "title": "DevOps",
+        "list": ["Git", "Docker", "Nginx", "Google Cloud Platform(GCP)", "AWS"]
+      },
+      {
+        "title": "Testing",
+        "list": ["Jest", "Mocha / Chai"]
+      },
+      {
+        "title": "Languages",
+        "list": ["Chinese (Mandarin & Taiwanese)", "English"]
+      }
+    ]
+  },
+  "work": {
+    "title": "PROJECTS",
+    "summary": "These selected projects highlight my real-world experience across modern web development. Each example includes a brief overview and live demo, demonstrating my ability to solve complex problems, work with different technologies, and deliver effective solutions.",
+    "description": "Over the past 4 years, I have delivered 30+ web projects, including corporate sites, exhibition microsites, and animation-driven experiences. Many involved WordPress CMS integration, i18n, and performance tuning, strengthening my capabilities in motion UI, scalable architecture, and cross-team collaboration.",
+    "projects": [
+      {
+        "title": "Generative Art Collection (p5.js)",
+        "description": "Creative coding experiments on OpenProcessing",
+        "highlight": ["Generative visuals with p5.js", "30+ interactive sketches", "Creative coding exploration"],
+        "image": "openprocess.webp",
+        "alt": "Generative Art Collection project image",
+        "link": "https://openprocessing.org/user/436847#sketches"
+      },
+      {
+        "title": "Sino-French War (Interactive Story)",
+        "description": "Narrative web experience for NMTH",
+        "highlight": ["Scroll-driven storytelling", "SVG + animation integration", "Multi-section interaction design"],
+        "image": "chine-fa.webp",
+        "alt": "Sino-French War project image",
+        "link": "https://taiwanoverseas.nmth.gov.tw/sino-french-war"
+      },
+      {
+        "title": "Bai Bai 1.0 (CMS + Animation)",
+        "description": "Content-driven site built with WordPress + Nuxt",
+        "highlight": ["SVG animation with GSAP", "Multi-language CMS integration", "Legacy site optimization"],
+        "image": "paipai.webp",
+        "alt": "Bai Bai project image",
+        "link": "https://paipai.blog/"
+      },
+      {
+        "title": "Far Eastern New Century (Global Corporate Website)",
+        "description": "Contributed to the frontend development of a large-scale multilingual corporate website",
+        "highlight": ["Supported the delivery of a 90+ page enterprise platform", "Built reusable components and page templates", "Integrated WordPress CMS with i18n support","Security remediation and frontend enhancements"],
+        "image": "fenc.webp",
+        "alt": "Far Eastern New Century project image",
+        "link": "https://www.fenc.com/"
+      }
+    ]
+  },
+  "experience": {
+    "title": "Work Experience",
+    "items": [
+      {
+        "title": "Frontend Engineer",
+        "companyName": "Block Studio",
+        "icon": "blockstudio.png",
+        "date": "Feb 2025 - Jun 2026",
+        "points": [
+          "Delivered 6 new projects and maintained 10+ existing websites, including government and enterprise platforms.",
+          "Implemented advanced animation solutions and optimized scroll-based interactions for smooth performance.",
+          "Supported i18n, A11y compliance, and security best practices, collaborating closely with designers and PMs."
+        ]
+      },
+      {
+        "title": "Node. Js Engineer",
+        "companyName": "Bat Mobile Inc",
+        "icon": "bat.png",
+        "date": "Aug 2021 - Jan 2025",
+        "points": [
+          "Developed and maintained a large-scale student community platform serving web, iOS, and Android users.",
+          "Redesigned the messaging system from direct messages to threaded group conversations.",
+          "Separated backend APIs from full-stack system, optimized DB architecture, and authored ~75% of technical documentation.",
+          "Expanded operations platform with reporting, blocking, vote/board settings, account history, notifications, and scheduling."
+        ]
+      },
+      {
+        "title": "Manager",
+        "companyName": "CAMA coffee",
+        "icon": "cama.png",
+        "date": "Oct 2017 - Jul 2020",
+        "points": ["Managed 3 branches and 10+ staff, strengthening leadership and communication."]
+      },
+      {
+        "title": "Other Experience",
+        "companyName": "Hospitality & Surveying",
+        "icon": "other.png",
+        "date": "2013 - 2017",
+        "points": ["8 years in hospitality & 1 year in surveying; developed strong teamwork and problem-solving abilities."]
+      }
+    ]
+  },
+  "contact": {
+    "name": "YuCheng Huang / Calvin",
+    "title": "contact me",
+    "links": [
+      {
+        "name": "Email",
+        "url": "mailto:calvin.huang.dev@gmail.com",
+        "title": "Email link"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/in/yu-cheng-huang-870585138/",
+        "title": "LinkedIn link"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/yuchengH1988",
+        "title": "GitHub link"
+      },
+      {
+        "name": "Open Process",
+        "url": "https://openprocessing.org/user/436847/#sketches",
+        "title": "Open Process link"
+      }
+    ]
+  },
+  "error": {
+    "notFound": "This page could not be found."
+  },
+  "ui": {
+    "designFile": "Design file",
+    "descriptionLabel": "Description:",
+    "imageLoadFailed": "Failed to load image"
+  }
+}

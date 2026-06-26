@@ -1,4 +1,5 @@
 <script setup>
+import siteContent from '~/locales/site.json'
 
 const props = defineProps({
   src: {
@@ -26,6 +27,7 @@ const props = defineProps({
 const imageUrl = ref(null)
 const isLoading = ref(true)
 const hasError = ref(false)
+const uiContent = siteContent.ui
 
 onMounted(async () => {
   try {
@@ -48,7 +50,7 @@ onMounted(async () => {
 
     <!-- 錯誤狀態 -->
     <div v-else-if="hasError" class="absolute inset-0 flex items-center justify-center bg-gray-100">
-      <span class="text-gray-400">圖片載入失敗</span>
+      <span class="text-gray-400">{{ uiContent.imageLoadFailed }}</span>
     </div>
 
     <!-- 圖片 -->

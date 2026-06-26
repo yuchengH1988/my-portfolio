@@ -1,8 +1,11 @@
 <script setup>
+import siteContent from '~/locales/site.json'
+
 const props = defineProps({
   error: Object
 })
 const { error } = toRefs(props)
+const errorContent = siteContent.error
 </script>
 
 <template>
@@ -14,7 +17,7 @@ const { error } = toRefs(props)
       </div>
 
       <p class="text-en-head-3 lg:text-en-display-3 text-gray-800 opacity-75">
-        真的是找不到這個頁面啦
+        {{ errorContent.notFound }}
       </p>
     </div>
   </div>
