@@ -100,7 +100,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="rootRef" class="relative mt-16 h-[400dvh] w-full rounded-[50px]">
+  <div ref="rootRef" class="relative mt-16 h-dvh w-full rounded-[50px]">
     <div class="relative h-dvh overflow-hidden">
       <article
         v-for="(item, idx) in selectedData"

@@ -1,21 +1,78 @@
 <script setup>
 import siteContent from '~/locales/site.json'
 
+const { $gsap } = useNuxtApp()
 const workContent = siteContent.work
+const sectionRef = ref(null)
+const introRef = ref(null)
+const titleSpaceRef = ref(null)
+const titleRef = ref(null)
+let titleTween
+const TITLE_VISUAL_FILL_RATIO = 1.8
+
+const getTitleScale = () => {
+  if (!titleSpaceRef.value || !titleRef.value) { return 1 }
+
+  const titleHeight = titleRef.value.offsetHeight
+  const titleSpaceHeight = titleSpaceRef.value.offsetHeight
+
+  if (!titleHeight || !titleSpaceHeight) { return 1 }
+
+  return Math.min(Math.max(titleSpaceHeight / titleHeight * TITLE_VISUAL_FILL_RATIO, 1), 14)
+}
+
+onMounted(() => {
+  nextTick(() => {
+    if (!introRef.value || !titleSpaceRef.value || !titleRef.value) { return }
+
+    titleTween = $gsap.fromTo(
+      titleRef.value,
+      {
+        scaleY: getTitleScale,
+        transformOrigin: 'center bottom'
+      },
+      {
+        scaleY: 1,
+        force3D: true,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: introRef.value,
+          start: 'top bottom',
+          end: 'bottom 20%',
+          scrub: true,
+          invalidateOnRefresh: true
+        }
+      }
+    )
+
+    document.fonts?.ready.then(() => {
+      titleTween?.scrollTrigger?.refresh()
+    })
+  })
+})
+
+onBeforeUnmount(() => {
+  titleTween?.scrollTrigger?.kill()
+  titleTween?.kill()
+})
 </script>
 
 <template>
-  <div class="set w-full pt-30 text-bgc/90">
-    <div class="flex flex-col items-center text-center">
-      <h2
-        data-fade="up"
-        class="font-display text-[clamp(3.875rem,15vw,12.5rem)] font-black leading-[1.2]"
-      >
-        {{ workContent.title }}
-      </h2>
-      <p data-fade="up" class="text-body-2 mb-5 mt-10 max-w-[80%] lg:my-0">
-        {{ workContent.summary }}
-      </p>
+  <div ref="sectionRef" class="set flex min-h-dvh w-full items-center py-30 text-bgc/90">
+    <div>
+      <div ref="introRef" class="flex h-dvh flex-col items-center text-center">
+        <div ref="titleSpaceRef" class="flex h-[70dvh] items-end justify-center overflow-visible">
+          <h2
+            ref="titleRef"
+            class="relative z-0 font-display text-[clamp(3.875rem,15vw,20rem)] font-black leading-none will-change-transform"
+          >
+            {{ workContent.title }}
+          </h2>
+        </div>
+        <p data-fade="up" class="text-body-2 relative z-[1] mb-5 mt-16 max-w-[80%] lg:mb-0 lg:mt-20">
+          {{ workContent.summary }}
+        </p>
+      </div>
       <WorkClips />
     </div>
   </div>
