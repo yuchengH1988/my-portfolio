@@ -25,8 +25,8 @@ const experiences = ref(await Promise.all(
       <h2 data-fade="up" class="text-display-3 uppercase">
         {{ experienceContent.title }}
       </h2>
-      <div class="relative mx-auto mt-15 flex min-h-dvh w-full flex-col items-center pb-[300px] pt-10 md:mt-20 md:w-[85vw] lg:w-[70vw]">
-        <div data-fade="left" class="absolute inset-y-0 left-8 w-[1px] bg-white md:left-[225px]">
+      <div class="relative mx-auto mt-15 flex min-h-dvh w-full flex-col items-center pb-[300px] pt-10 [perspective:1000px] md:mt-20 md:w-[85vw] lg:w-[70vw]">
+        <div class="exp-timeline-axis absolute inset-y-0 left-8 w-[1px] bg-white md:left-[225px]">
           <div class="relative size-full">
             <div class="absolute bottom-0 h-[240px] w-[1px] origin-bottom rotate-45 bg-bgc"></div>
             <div class="absolute bottom-0 h-[240px] w-[1px] origin-bottom -rotate-45 bg-bgc"></div>
@@ -65,3 +65,22 @@ const experiences = ref(await Promise.all(
     </div>
   </section>
 </template>
+
+<style scoped>
+.exp-timeline-axis {
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  animation: timeline-axis-rotate 5s linear infinite;
+  will-change: transform;
+}
+
+@keyframes timeline-axis-rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
+}
+</style>
