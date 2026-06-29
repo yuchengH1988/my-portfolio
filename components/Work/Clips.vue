@@ -123,7 +123,7 @@ onBeforeUnmount(() => {
             </picture>
             <div v-if="isCursor" class="absolute inset-0 bg-black/30 opacity-100 transition-opacity duration-500 group-hover:opacity-10" />
           </div>
-          <div class="relative flex h-[30vh] w-[80vw] flex-col px-4 py-2 text-left text-black lg:w-[50vw]">
+          <div class="relative flex min-h-[30vh] w-[80vw] flex-col px-4 py-2 text-left text-black lg:w-[50vw]">
             <AtomBgGlass />
             <span class="text-body-2 z-[2] text-right leading-[2]">
               {{ String(idx + 1).padStart(2, '0') }}

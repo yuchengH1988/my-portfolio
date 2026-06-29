@@ -98,7 +98,7 @@ const skills = ref(introContent.skills)
         <h2 class="text-display-2 my-5 uppercase text-white">
           {{ introContent.title }}
         </h2>
-        <p class="text-body-1 text-black lg:w-4/5">
+        <p class="text-body-2 text-black lg:w-4/5">
           <span
             v-for="(word, wordIndex) in introWords"
             :key="`${word.join('')}-${wordIndex}`"

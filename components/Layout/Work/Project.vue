@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
         <div ref="titleSpaceRef" class="flex h-[70dvh] items-end justify-center overflow-visible">
           <h2
             ref="titleRef"
-            class="relative z-0 font-display text-[clamp(3.875rem,15vw,20rem)] font-black leading-none will-change-transform"
+            class="relative z-0 font-display text-[clamp(2rem,12vw,20rem)] font-black leading-none will-change-transform md:text-[clamp(2rem,15vw,20rem)]"
           >
             {{ workContent.title }}
           </h2>

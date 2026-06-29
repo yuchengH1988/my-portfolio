@@ -19,8 +19,8 @@ onMounted(() => {
       transformPerspective: 800,
       rotateX: 90,
       y: (index) => {
-        if (index === 0) { return '-25vh' }
-        if (index === 2) { return '25vh' }
+        if (index === 0) { return '-20vh' }
+        if (index === 2) { return '20vh' }
         return 0
       },
       opacity: 0
