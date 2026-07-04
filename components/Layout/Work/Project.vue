@@ -58,7 +58,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="sectionRef" class="set flex min-h-dvh w-full items-center py-30 text-bgc/90">
+  <div ref="sectionRef" class="flex min-h-dvh w-full items-center px-5 py-30 text-bgc/90">
     <div>
       <div ref="introRef" class="flex h-dvh flex-col items-center text-center">
         <div ref="titleSpaceRef" class="flex h-[70dvh] items-end justify-center overflow-visible">

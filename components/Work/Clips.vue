@@ -6,6 +6,8 @@ import imgOpenProcess from '~/assets/images/openprocess.webp'
 import imgSinoMobile from '~/assets/images/chine-fa-m.webp'
 import imgPaipaiMobile from '~/assets/images/paipai-m.webp'
 import imgOpenProcessMobile from '~/assets/images/openprocess-m.webp'
+import imgByeBye1987 from '~/assets/images/byebye1987.webp'
+import imgByeBye1987Mobile from '~/assets/images/byebye1987_m.webp'
 import imgFenc from '~/assets/images/fenc.webp'
 import imgFencMobile from '~/assets/images/fenc-mobile.webp'
 import siteContent from '~/locales/site.json'
@@ -23,6 +25,7 @@ const imageMap = {
   'chine-fa.webp': imgSino,
   'paipai.webp': imgPaipai,
   'openprocess.webp': imgOpenProcess,
+  'byebye1987.webp': imgByeBye1987,
   'fenc.webp': imgFenc
 }
 
@@ -30,7 +33,8 @@ const mobileImageMap = {
   'chine-fa.webp': imgSinoMobile,
   'paipai.webp': imgPaipaiMobile,
   'openprocess.webp': imgOpenProcessMobile,
-  'fenc-mobile.webp': imgFencMobile
+  'byebye1987.webp': imgByeBye1987Mobile,
+  'fenc.webp': imgFencMobile
 }
 
 const cleanAssetUrl = url => String(url).split('?')[0]

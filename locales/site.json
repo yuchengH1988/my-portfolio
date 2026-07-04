@@ -69,6 +69,18 @@
         "link": "https://openprocessing.org/user/436847#sketches"
       },
       {
+        "title": "Goodbye 1987 (Interactive Film Website)",
+        "description": "Interactive promotional website built with Nuxt, GSAP, and p5.js",
+        "highlight": [
+          "Generative visuals and animations with p5.js",
+          "Interactive quiz with downloadable image & video results",
+          "Horizontal storytelling experience with GSAP"
+        ],
+        "image": "byebye1987.webp",
+        "alt": "Goodbye 1987 interactive film website project image",
+        "link": "https://untilwemeetagain1987.com/"
+      },
+      {
         "title": "Sino-French War (Interactive Story)",
         "description": "Narrative web experience for NMTH",
         "highlight": ["Scroll-driven storytelling", "SVG + animation integration", "Multi-section interaction design"],
