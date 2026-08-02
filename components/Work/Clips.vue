@@ -47,12 +47,9 @@ const selectedData = computed(() =>
 
 <template>
   <div class="relative mt-20 w-full border-t border-bgc/20">
-    <a
+    <div
       v-for="(item, idx) in selectedData"
       :key="item.title"
-      :href="item.link"
-      target="_blank"
-      rel="noopener noreferrer"
       class="project-row group grid grid-cols-12 gap-4 border-b border-bgc/20 py-8 text-bgc transition-colors duration-500 last:border-b-0 lg:items-center lg:gap-x-4"
     >
       <div class="col-span-12 flex flex-col items-center justify-center gap-2 lg:col-span-9 lg:flex-row lg:justify-start lg:gap-8">
@@ -79,7 +76,12 @@ const selectedData = computed(() =>
           </p>
         </div>
       </div>
-      <figure class="project-media lg:ol-span-3 relative col-span-12 mx-auto aspect-[16/10] max-w-[300px] overflow-hidden rounded-lg lg:max-w-none">
+      <a
+        :href="item.link"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="project-media relative col-span-12 mx-auto aspect-[16/10] max-w-[300px] overflow-hidden rounded-lg lg:col-span-3 lg:max-w-none"
+      >
         <picture class="block size-full">
           <source media="(max-width: 539px)" :srcset="mobileImgUrl(item.image)" />
           <img
@@ -93,8 +95,8 @@ const selectedData = computed(() =>
         <span class="pointer-events-none absolute bottom-2 right-2 flex size-9 items-center justify-center rounded-full border border-white/25 bg-black/45 text-white backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
           <AtomIcon name="external-link" class="size-4" />
         </span>
-      </figure>
-    </a>
+      </a>
+    </div>
   </div>
 </template>
 

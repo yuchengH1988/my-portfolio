@@ -25,7 +25,7 @@ export const fadeOut = {
 export const aosFadeIn = {
   name: 'aosFadeIn',
   effect: (_, config) => {
-    const defaults = { duration: 0.7 }
+    const defaults = { duration: 0.7, delay: 0.5, ...config }
     const directions = {
       up: { from: { y: '50%' }, to: { y: '0%' }, leave: { y: '-50%' } },
       left: { from: { x: '-50%' }, to: { x: '0%' }, leave: { x: '-50%' } },
@@ -44,13 +44,15 @@ export const aosFadeIn = {
           gsap.to(elements, { opacity: 1, ...to, ...defaults })
         },
         onLeave: (elements) => {
-          gsap.to(elements, { opacity: 0, ...leave, ...defaults })
+          gsap.to(elements, { opacity: 0, ...leave, duration: defaults.duration })
         },
         onLeaveBack: (elements) => {
-          gsap.to(elements, { opacity: 0, ...from, ...defaults })
+          gsap.to(elements, { opacity: 0, ...from, duration: defaults.duration })
         }
       })
     })
+
+    ScrollTrigger.refresh()
   }
 }
 
