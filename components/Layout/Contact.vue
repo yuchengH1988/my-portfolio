@@ -8,7 +8,7 @@ const links = ref(contactContent.links)
 <template>
   <section
     id="contact"
-    class="text-display-5 w-screen overflow-hidden bg-bgc uppercase text-black"
+    class="text-display-2 w-screen overflow-hidden bg-bgc uppercase text-black"
   >
     <div data-fade="up" class="flex w-full flex-col px-5 pb-15 pt-10 sm:flex-row lg:px-10">
       <h2 class="mb-30 flex w-full flex-col justify-between sm:mb-0 sm:w-1/2 sm:border-r sm:border-black">

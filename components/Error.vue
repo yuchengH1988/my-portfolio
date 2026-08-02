@@ -12,7 +12,7 @@ const errorContent = siteContent.error
   <div class="h-lvh pt-20 lg:pt-24">
     <div class="container flex h-full flex-col items-center justify-start gap-28 lg:justify-center">
       <div class="flex flex-col items-center opacity-75">
-        <h2 class="text-display-5 text-red-500" v-text="error.statusCode" />
+        <h2 class="text-display-2 text-red-500" v-text="error.statusCode" />
         <p class="text-en-head-4 text-center text-gray-800" v-text="error.message" />
       </div>
 

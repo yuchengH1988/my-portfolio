@@ -13,14 +13,6 @@
     @apply font-display text-mb/display/3 lg:text-dt/display/3;
   }
 
-  .text-display-4 {
-    @apply font-display text-mb/display/4 lg:text-dt/display/4;
-  }
-
-  .text-display-5 {
-    @apply font-display text-mb/display/5 lg:text-dt/display/5;
-  }
-
   /* Head */
   .text-head-1 {
     @apply font-default text-mb/head/1 lg:text-dt/head/1;
@@ -28,18 +20,6 @@
 
   .text-head-2 {
     @apply font-default text-mb/head/2 lg:text-dt/head/2;
-  }
-
-  .text-head-3 {
-    @apply font-default text-mb/head/3 lg:text-dt/head/3;
-  }
-
-  .text-head-4 {
-    @apply font-default text-mb/head/4 lg:text-dt/head/4;
-  }
-
-  .text-head-5 {
-    @apply font-default text-mb/head/5 lg:text-dt/head/5;
   }
 
   /* Body */
@@ -55,15 +35,6 @@
     @apply font-default text-mb/body/3 lg:text-dt/body/3;
   }
 
-  .text-body-4 {
-    @apply font-default text-mb/body/4 lg:text-dt/body/4;
-  }
-
-  /* Link */
-  .text-link-1 {
-    @apply font-default text-mb/link/1 lg:text-dt/link/1;
-  }
-
   /* Button */
   .text-button-1 {
     @apply font-default text-mb/button/1 lg:text-dt/button/1;
@@ -71,9 +42,5 @@
 
   .text-button-2 {
     @apply font-default text-mb/button/2 lg:text-dt/button/2;
-  }
-
-  .text-button-3 {
-    @apply font-default text-mb/button/3 lg:text-dt/button/3;
   }
 }

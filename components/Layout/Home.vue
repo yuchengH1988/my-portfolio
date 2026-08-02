@@ -82,7 +82,7 @@ onMounted(() => {
       <CommonP5Hero />
     </div>
     <div class="z-[1] text-center uppercase text-white">
-      <div ref="wordsRef" class="text-display-2 flex flex-col md:flex-row">
+      <div ref="wordsRef" class="text-display-1 flex flex-col md:flex-row">
         <template v-for="(word, index) in homeContent.heroWords" :key="word">
           <span class="js-hero-word">{{ word }}</span><span v-if="index < homeContent.heroWords.length - 1" class="js-hero-separator">{{ homeContent.heroSeparator }}</span>
         </template>

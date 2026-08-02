@@ -69,7 +69,7 @@ onBeforeUnmount(() => {
             {{ workContent.title }}
           </h2>
         </div>
-        <p data-fade="up" class="text-body-2 relative z-[1] mb-5 mt-16 max-w-[80%] lg:mb-0 lg:mt-20">
+        <p data-fade="up" class="text-body-2 relative z-[1] mb-5 mt-16 max-w-[780px] lg:mb-0 lg:mt-20">
           {{ workContent.summary }}
         </p>
       </div>

@@ -22,7 +22,7 @@ const experiences = ref(await Promise.all(
 <template>
   <section id="exp" class="w-screen overflow-hidden text-white">
     <div class="set w-full pt-10 text-bgc/90">
-      <h2 data-fade="up" class="text-display-3 uppercase">
+      <h2 data-fade="up" class="text-display-2 uppercase">
         {{ experienceContent.title }}
       </h2>
       <div class="relative mx-auto mt-15 flex min-h-dvh w-full flex-col items-center pb-[300px] pt-10 [perspective:1000px] md:mt-20 md:w-[85vw] lg:w-[70vw]">
@@ -47,14 +47,14 @@ const experiences = ref(await Promise.all(
           <p data-fade="left" class="text-body-3 w-[154px] md:mr-30 md:w-40 md:text-right">
             {{ exp.date }}
           </p>
-          <div data-fade="right" class="flex w-full flex-col pt-8 md:w-[calc(100%-280px)] md:pt-0">
-            <p class="text-head-4 font-extra-bold">
+          <div data-fade="right" class="flex w-full flex-col pt-8 md:w-[calc(100%-280px)]">
+            <p class="text-body-2">
               {{ exp.title }}
             </p>
-            <p class="text-body-3 mt-3 w-fit bg-bgc px-2 py-1 font-extra-bold text-black">
+            <p class="text-body-3 mt-3 w-fit bg-bgc/80 px-2 py-1 font-extra-bold text-black">
               {{ exp.companyName }}
             </p>
-            <ul class="text-body-3 mt-5 list-inside list-disc break-words md:ml-5">
+            <ul class="text-body-3 mt-5 list-outside list-disc break-words md:ml-5">
               <li v-for="(point, index) in exp.points" :key="index">
                 {{ point }}
               </li>
