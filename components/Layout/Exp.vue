@@ -20,12 +20,12 @@ const experiences = ref(await Promise.all(
 
 </script>
 <template>
-  <section id="exp" class="w-screen overflow-hidden text-white">
+  <section id="exp" class="w-screen overflow-x-clip text-white">
     <div class="set w-full pt-10 text-bgc/90">
       <h2 data-fade="up" class="text-display-2 uppercase">
         {{ experienceContent.title }}
       </h2>
-      <div class="relative mx-auto mt-15 flex min-h-dvh w-full flex-col items-center pb-[300px] pt-10 [perspective:1000px] md:mt-20 md:w-[85vw] lg:w-[70vw]">
+      <div class="relative mx-auto mt-15 flex w-full flex-col items-center pb-[300px] pt-10 [perspective:1000px] md:mt-20 md:w-[85vw] lg:w-[70vw]">
         <div class="exp-timeline-axis absolute inset-y-0 left-8 w-[1px] bg-white md:left-[225px]">
           <div class="relative size-full">
             <div class="absolute bottom-0 h-[240px] w-[1px] origin-bottom rotate-45 bg-bgc"></div>

@@ -22,32 +22,81 @@ export const fadeOut = {
 }
 
 // 註冊類似 AOS 效果，自訂一個 data-*
+// 手機注意：勿用 end: 'bottom 10%' + onLeave，長區塊會在畫面中間被淡出；
+// 網址列縮放會改 viewport，須搭配 ScrollTrigger.refresh。
 export const aosFadeIn = {
   name: 'aosFadeIn',
-  effect: (_, config) => {
-    const defaults = { duration: 0.7, delay: 0.5, ...config }
-    const directions = {
-      up: { from: { y: '50%' }, to: { y: '0%' }, leave: { y: '-50%' } },
-      left: { from: { x: '-50%' }, to: { x: '0%' }, leave: { x: '-50%' } },
-      right: { from: { x: '50%' }, to: { x: '0%' }, leave: { x: '50%' } }
-    }
-    Object.entries(directions).forEach(([dir, { from, to, leave }]) => {
-      gsap.set(`[data-fade="${dir}"]`, { opacity: 0, ...from })
+  effect: (_, config = {}) => {
+    const {
+      duration = 0.6,
+      delay = 0,
+      markers = false,
+      once = false
+    } = config
 
-      ScrollTrigger.batch(`[data-fade="${dir}"]`, {
+    const tweenDefaults = {
+      duration,
+      delay,
+      ease: 'power2.out',
+      overwrite: 'auto'
+    }
+
+    // 用 px，避免 % 位移在寬元素 / overflow 下被裁切成「消失」
+    const directions = {
+      up: { from: { y: 32 }, to: { y: 0 } },
+      left: { from: { x: -24 }, to: { x: 0 } },
+      right: { from: { x: 24 }, to: { x: 0 } }
+    }
+
+    Object.entries(directions).forEach(([dir, { from, to }]) => {
+      const targets = gsap.utils.toArray(`[data-fade="${dir}"]`)
+      if (!targets.length) return
+
+      gsap.set(targets, { opacity: 0, ...from, force3D: true })
+
+      ScrollTrigger.batch(targets, {
+        // 進場偏早一點；離場等元素底部完全離開視窗頂端
+        // （避免手機長卡片還在畫面中就被 onLeave）
         start: 'top 90%',
-        end: 'bottom 10%',
+        end: 'bottom top',
+        once,
+        markers,
+        invalidateOnRefresh: true,
+        interval: 0.1,
+        batchMax: 8,
         onEnter: (elements) => {
-          gsap.to(elements, { opacity: 1, ...to, ...defaults })
+          gsap.to(elements, {
+            opacity: 1,
+            ...to,
+            ...tweenDefaults,
+            stagger: 0.06
+          })
         },
         onEnterBack: (elements) => {
-          gsap.to(elements, { opacity: 1, ...to, ...defaults })
+          gsap.to(elements, {
+            opacity: 1,
+            ...to,
+            ...tweenDefaults,
+            stagger: 0.06
+          })
         },
         onLeave: (elements) => {
-          gsap.to(elements, { opacity: 0, ...leave, duration: defaults.duration })
+          if (once) return
+          gsap.to(elements, {
+            opacity: 0,
+            ...from,
+            duration: tweenDefaults.duration,
+            overwrite: 'auto'
+          })
         },
         onLeaveBack: (elements) => {
-          gsap.to(elements, { opacity: 0, ...from, duration: defaults.duration })
+          if (once) return
+          gsap.to(elements, {
+            opacity: 0,
+            ...from,
+            duration: tweenDefaults.duration,
+            overwrite: 'auto'
+          })
         }
       })
     })

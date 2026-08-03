@@ -26,6 +26,23 @@ export default defineNuxtPlugin({
     })
     gsap.ticker.lagSmoothing(0)
 
+    // 手機網址列顯隱會改 visualViewport，導致 ScrollTrigger 起點錯位
+    // 不忽略 mobile resize，改 debounce refresh 校正
+    ScrollTrigger.config({ ignoreMobileResize: false })
+
+    let refreshTimer
+    const scheduleRefresh = () => {
+      clearTimeout(refreshTimer)
+      refreshTimer = setTimeout(() => {
+        ScrollTrigger.refresh()
+      }, 200)
+    }
+
+    if (process.client) {
+      window.addEventListener('orientationchange', scheduleRefresh)
+      window.visualViewport?.addEventListener('resize', scheduleRefresh)
+    }
+
     return {
       provide: {
         lenis
@@ -42,6 +59,11 @@ export default defineNuxtPlugin({
       }
 
       lenis.start()
+      // 頁面內容就緒後再算一次位置
+      requestAnimationFrame(() => {
+        const { $ScrollTrigger } = useNuxtApp()
+        $ScrollTrigger.refresh()
+      })
     }
   }
 })

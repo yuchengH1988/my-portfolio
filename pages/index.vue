@@ -1,9 +1,11 @@
 <script setup>
-const { $gsap } = useNuxtApp()
+const { $gsap, $ScrollTrigger } = useNuxtApp()
 onMounted(() => {
   nextTick(() => {
+    // 等字型 / 圖片大致就緒再綁定，減少手機首次量測偏差
     setTimeout(() => {
       $gsap.effects.aosFadeIn()
+      $ScrollTrigger.refresh()
     }, 500)
   })
 })
