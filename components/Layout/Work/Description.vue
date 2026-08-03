@@ -12,6 +12,10 @@ const workWords = workText.split(' ')
 onMounted(() => {
   if (!sectionRef.value || !workWordEls.value.length) { return }
 
+  // sm 以下關閉字詞飄移（手機 scrub + 多字 transform 太耗效能）
+  const enableDrift = window.matchMedia('(min-width: 540px)').matches
+  if (!enableDrift) { return }
+
   $gsap.set(workWordEls.value, {
     opacity: 0,
     force3D: true,
@@ -65,7 +69,7 @@ onBeforeUnmount(() => {
         v-for="(word, wordIndex) in workWords"
         :key="`${word}-${wordIndex}`"
         :ref="el => { if (el) workWordEls.push(el) }"
-        class="mr-[0.25em] inline-block will-change-transform"
+        class="mr-[0.25em] inline-block sm:will-change-transform"
       >
         {{ word }}
       </span>
