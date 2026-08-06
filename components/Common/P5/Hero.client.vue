@@ -1,15 +1,8 @@
 <script setup>
 import P5 from 'p5'
 
-/**
- * 各區塊主題參數（index 對應 Background activeIndex）
- * 0 home / 1 intro / 2 work / 3 exp
- *
- * 顏色格式：[H, S, B, A]
- * - H: 0–360 / S,B: 0–100 / A: 0–1
- * - fill: null  → 使用 home 原本 HSB 層疊填色
- * - angle: null → 跟隨滑鼠
- */
+// 0 home / 1 intro / 2 work / 3 exp
+// color: [H, S, B, A] — fill/angle null = home 層疊 / 跟隨滑鼠
 const SCENE_THEMES = [
   {
     id: 'home',
@@ -24,21 +17,21 @@ const SCENE_THEMES = [
   {
     id: 'intro',
     bg: [0, 0, 100, 0.8],
-    fill: [0, 0, 53, 1], // ≈ #888
-    stroke: [0, 0, 40, 1], // ≈ #666
+    fill: [0, 0, 53, 1],
+    stroke: [0, 0, 40, 1],
     strokeWeight: 0.5,
-    angle: 0.4,
-    angleEase: 0.03,
+    angle: null,
+    angleEase: 0.02,
     layers: 22
   },
   {
     id: 'work',
     bg: [0, 0, 100, 0.8],
-    fill: [0, 0, 0, 1], // #000
-    stroke: [0, 0, 20, 1], // ≈ #333
+    fill: [0, 0, 0, 1],
+    stroke: [0, 0, 20, 1],
     strokeWeight: 0.5,
-    angle: 0.6,
-    angleEase: 0.03,
+    angle: null,
+    angleEase: 0.02,
     layers: 33
   },
   {
@@ -65,7 +58,6 @@ const props = defineProps({
     type: Boolean,
     default: true
   },
-  // 0 home / 1 intro / 2 work / 3 exp
   sceneIndex: {
     type: Number,
     default: 0
@@ -105,7 +97,6 @@ onMounted(async () => {
     let rotateAngle = 0.5
     let colorPhase = 0
 
-    // 目前插值中的主題狀態（HSB + alpha）
     const cur = {
       bg: [...SCENE_THEMES[0].bg],
       fill: [0, 0, 0, 1],
@@ -113,7 +104,7 @@ onMounted(async () => {
       strokeWeight: 0,
       angleEase: 0.01,
       layers: 66,
-      homeFillMix: 1 // 1 = home 層疊填色，0 = 主題 fill
+      homeFillMix: 1
     }
 
     p.setup = () => {
@@ -142,7 +133,6 @@ onMounted(async () => {
       const targetStroke = [...target.stroke]
       const targetBg = [...target.bg]
 
-      // 參數 lerp 到目標主題
       for (let i = 0; i < 4; i++) {
         cur.bg[i] = p.lerp(cur.bg[i], targetBg[i], THEME_LERP)
         cur.fill[i] = p.lerp(cur.fill[i], targetFill[i], THEME_LERP)
@@ -155,7 +145,6 @@ onMounted(async () => {
 
       rotateAngle = p.lerp(rotateAngle, targetAngle, cur.angleEase)
 
-      // 底色
       p.push()
       p.fill(cur.bg[0], cur.bg[1], cur.bg[2], cur.bg[3])
       p.noStroke()
@@ -177,8 +166,7 @@ onMounted(async () => {
 
       const layerCount = Math.max(1, Math.round(cur.layers))
       for (let x = 0; x < layerCount; x++) {
-        // home 層疊填色
-        const paintColor = x % 2 === 0 ? p.color(0, 0, 20) : p.color(0, 0, 30) // #333 / #4C4C4C
+        const paintColor = x % 2 === 0 ? p.color(0, 0, 20) : p.color(0, 0, 30)
         const homeFill = p.color(
           0,
           p.saturation(paintColor),
@@ -186,7 +174,6 @@ onMounted(async () => {
           0.03
         )
 
-        // 主題實色填色
         const themeFill = p.color(cur.fill[0], cur.fill[1], cur.fill[2], cur.fill[3])
         const fillNow = p.lerpColor(themeFill, homeFill, cur.homeFillMix)
         p.fill(fillNow)

@@ -91,7 +91,7 @@ const skills = ref(introContent.skills)
 <template>
   <div id="intro" ref="introRef" class="w-screen bg-transparent">
     <div class="set grid w-full grid-cols-1 overflow-visible lg:grid-cols-2">
-      <div ref="leftInfoRef" class="top-0 flex  flex-col justify-center py-30 pl-5 pr-10 sm:mt-0 lg:sticky lg:mb-0 lg:h-dvh lg:border-r lg:border-white/80 lg:py-0 xl:pl-0">
+      <div ref="leftInfoRef" class="top-0 flex  flex-col justify-center py-30 pl-5 pr-10 sm:mt-0 lg:sticky lg:mb-0 lg:h-dvh lg:py-0 xl:pl-0">
         <span class="text-body-1 inline-block w-fit rounded-full bg-black px-2 uppercase text-white/80 xl:px-4 xl:py-0.5">
           {{ introContent.eyebrow }}
         </span>
