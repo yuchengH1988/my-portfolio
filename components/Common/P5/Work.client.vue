@@ -3,7 +3,18 @@ import P5 from 'p5'
 
 const canvasContainer = ref(null)
 let sketchInstance = null
-let observer = null
+
+const props = defineProps({
+  active: {
+    type: Boolean,
+    default: true
+  }
+})
+
+watch(() => props.active, (isActive) => {
+  if (!sketchInstance) { return }
+  isActive ? sketchInstance.loop() : sketchInstance.noLoop()
+})
 
 onMounted(async () => {
   await nextTick()
@@ -78,29 +89,14 @@ onMounted(async () => {
   }
 
   sketchInstance = new P5(sketch)
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!sketchInstance) { return }
-        if (entry.isIntersecting) {
-          // 可見 → 啟動
-          sketchInstance.loop()
-        } else {
-          // 離開視窗 → 停止 draw()
-          sketchInstance.noLoop()
-        }
-      })
-    },
-    {
-      threshold: 0.05 // 超過 5% 可見時才算顯示
-    }
-  )
-
-  if (canvasContainer.value) { observer.observe(canvasContainer.value) }
+  if (props.active) {
+    sketchInstance.loop()
+  } else {
+    sketchInstance.noLoop()
+  }
 })
 
 onBeforeUnmount(() => {
-  if (observer && canvasContainer.value) { observer.unobserve(canvasContainer.value) }
   if (sketchInstance) { sketchInstance.remove() }
 })
 </script>

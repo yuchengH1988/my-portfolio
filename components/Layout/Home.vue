@@ -2,9 +2,9 @@
 import siteContent from '~/locales/site.json'
 
 const { $gsap } = useNuxtApp()
+const p5Background = inject('p5Background', null)
 const wordsRef = ref(null)
 const nameRef = ref(null)
-const p5HeroRef = ref(null)
 const homeContent = siteContent.home
 const heroLetters = 'PORTFOLIO'.split('')
 
@@ -13,7 +13,6 @@ onMounted(() => {
     const letterEls = wordsRef.value?.querySelectorAll('.js-hero-letter')
     if (!letterEls?.length) { return }
     const nameEl = nameRef.value
-    const p5HeroEl = p5HeroRef.value
 
     $gsap.set(letterEls, {
       transformOrigin: 'center bottom',
@@ -29,7 +28,6 @@ onMounted(() => {
         scale: 1.6
       })
     }
-    if (p5HeroEl) { $gsap.set(p5HeroEl, { opacity: 0 }) }
 
     const tl = $gsap.timeline()
     tl.to(letterEls, {
@@ -49,22 +47,13 @@ onMounted(() => {
         ease: 'power2.out'
       }, '-=0.4')
     }
-    if (p5HeroEl) {
-      tl.to(p5HeroEl, {
-        opacity: 1,
-        duration: 3,
-        ease: 'power2.out'
-      }, '-=2')
-    }
+    p5Background?.fadeIn(tl, '-=2')
   })
 })
 
 </script>
 <template>
   <section id="home" class="relative flex h-sh w-screen flex-col items-center justify-center overflow-visible sm:h-dvh">
-    <div ref="p5HeroRef" class="absolute inset-0 z-[-1]">
-      <CommonP5Hero />
-    </div>
     <div class="z-[1] text-center uppercase text-white">
       <div ref="wordsRef" class="hero-title inline-flex justify-center gap-2.5 font-display uppercase lg:gap-5">
         <span

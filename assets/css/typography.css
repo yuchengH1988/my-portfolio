@@ -9,10 +9,6 @@
     @apply font-display text-mb/display/2 lg:text-dt/display/2;
   }
 
-  .text-display-3 {
-    @apply font-display text-mb/display/3 lg:text-dt/display/3;
-  }
-
   /* Head */
   .text-head-1 {
     @apply font-default text-mb/head/1 lg:text-dt/head/1;

@@ -89,13 +89,13 @@ const skills = ref(introContent.skills)
 </script>
 
 <template>
-  <div id="intro" ref="introRef" class="w-screen bg-white/80">
+  <div id="intro" ref="introRef" class="w-screen bg-transparent">
     <div class="set grid w-full grid-cols-1 overflow-visible lg:grid-cols-2">
       <div ref="leftInfoRef" class="top-0 flex  flex-col justify-center py-30 pl-5 pr-10 sm:mt-0 lg:sticky lg:mb-0 lg:h-dvh lg:border-r lg:border-white/80 lg:py-0 xl:pl-0">
         <span class="text-body-1 inline-block w-fit rounded-full bg-black px-2 uppercase text-white/80 xl:px-4 xl:py-0.5">
           {{ introContent.eyebrow }}
         </span>
-        <h2 class="text-display-1 my-5 uppercase text-white">
+        <h2 class="intro-title my-5 font-display uppercase text-white">
           {{ introContent.title }}
         </h2>
         <p class="text-body-2 text-black lg:w-4/5">
@@ -126,7 +126,7 @@ const skills = ref(introContent.skills)
         >
           <h3
             data-fade="up"
-            class="text-display-2 mb-2 duration-300 md:mb-8 lg:mb-0"
+            class="text-display-1 mb-2 duration-300 md:mb-8 lg:mb-0"
             :class="isCursor && 'hover:ml-10 hover:font-light'"
           >
             {{ introContent.skillsTitle }}
@@ -138,7 +138,7 @@ const skills = ref(introContent.skills)
           >
             <h4
               data-fade="left"
-              class="text-display-3 mb-1 text-black/70 duration-300 hover:translate-x-10 hover:font-light"
+              class="text-display-2 mb-1 text-black/70 duration-300 hover:translate-x-10 hover:font-light"
             >
               {{ title }}
             </h4>
@@ -146,7 +146,7 @@ const skills = ref(introContent.skills)
               v-for="(item, i) in list"
               :key="i"
               data-fade="right"
-              class="text-display-3 pl-7 text-black/40 duration-300 sm:pl-14"
+              class="text-display-2 pl-7 text-black/40 duration-300 sm:pl-14"
               :class="isCursor && 'hover:ml-10 hover:font-light'"
             >
               {{ item }}
@@ -157,3 +157,15 @@ const skills = ref(introContent.skills)
     </div>
   </div>
 </template>
+<style scoped>
+.intro-title {
+  font-size: clamp(2rem, 6.6vw, 6.2rem);
+  font-weight: 800;
+}
+
+@media (max-width: 1023px) {
+  .intro-title {
+    font-size: 44px;
+  }
+}
+</style>

@@ -56,7 +56,7 @@ const selectedData = computed(() =>
         <span class="text-body-3 mr-auto text-bgc/60">
           {{ String(idx + 1).padStart(2, '0') }}
         </span>
-        <h3 class="text-display-3 text-balance pb-4 text-center lg:w-1/2 lg:pb-0 lg:text-left">
+        <h3 class="text-display-2 text-balance pb-4 text-center lg:w-1/2 lg:pb-0 lg:text-left">
           {{ item.titleParts.main }}
           <span
             v-if="item.titleParts.aside"

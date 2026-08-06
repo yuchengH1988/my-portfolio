@@ -1,5 +1,11 @@
 <script setup>
 const { $gsap, $ScrollTrigger } = useNuxtApp()
+const p5BgRef = ref(null)
+
+provide('p5Background', {
+  fadeIn: (timeline, position) => p5BgRef.value?.fadeIn(timeline, position)
+})
+
 onMounted(() => {
   nextTick(() => {
     // 等字型 / 圖片大致就緒再綁定，減少手機首次量測偏差
@@ -13,11 +19,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="font-default">
-    <LayoutHome />
-    <LayoutIntro />
-    <LayoutWork />
-    <LayoutExp />
-    <LayoutContact />
+  <div>
+    <CommonP5Background ref="p5BgRef" />
+    <div class="relative z-10 font-default">
+      <LayoutHome />
+      <LayoutIntro />
+      <LayoutWork />
+      <LayoutExp />
+      <LayoutContact />
+    </div>
   </div>
 </template>

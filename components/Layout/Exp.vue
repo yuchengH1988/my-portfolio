@@ -22,7 +22,7 @@ const experiences = ref(await Promise.all(
 <template>
   <section id="exp" class="w-screen overflow-x-clip text-white">
     <div class="set w-full pt-10 text-bgc/90">
-      <h2 data-fade="up" class="text-display-2 uppercase">
+      <h2 data-fade="up" class="text-display-1 uppercase">
         {{ experienceContent.title }}
       </h2>
       <div class="relative mx-auto mt-15 flex w-full flex-col items-center pb-[300px] pt-10 [perspective:1000px] md:mt-20 md:w-[85vw] lg:w-[70vw]">

@@ -62,8 +62,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="sectionRef" class="relative flex h-screen w-full flex-col items-center justify-center sm:h-dvh">
-    <CommonP5Work class="z-[-1]" />
+  <div id="work-description" ref="sectionRef" class="relative flex h-screen w-full flex-col items-center justify-center sm:h-dvh">
     <p ref="desRef" class="text-head-1 w-[560px] max-w-[80vw] rounded-3xl p-3 text-center text-bgc md:p-5 lg:w-[920px]">
       <span
         v-for="(word, wordIndex) in workWords"

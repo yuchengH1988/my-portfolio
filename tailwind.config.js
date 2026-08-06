@@ -178,12 +178,10 @@ module.exports = {
       // head-1←old head/1 (merged with old head/3), head-2←old head/4
       // body-1–3 only; link uses body-3 + underline
       fontSize: {
-        'mb/display/1': ['2.75rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '900' }],
-        'dt/display/1': ['5rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '900' }],
-        'mb/display/2': ['3rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '800' }],
-        'dt/display/2': ['4rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '800' }],
-        'mb/display/3': ['2rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '500' }],
-        'dt/display/3': ['2.5rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '500' }],
+        'mb/display/1': ['3rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '800' }],
+        'dt/display/1': ['4rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '800' }],
+        'mb/display/2': ['2rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '500' }],
+        'dt/display/2': ['2.5rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '500' }],
         'mb/head/1': ['1.125rem', { lineHeight: '1.5', letterSpacing: '0px', fontWeight: '600' }],
         'dt/head/1': ['1.5rem', { lineHeight: '1.5', letterSpacing: '0px', fontWeight: '600' }],
         'mb/head/2': ['1rem', { lineHeight: '1.5', letterSpacing: '0px', fontWeight: '600' }],
