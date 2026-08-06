@@ -8,7 +8,7 @@ const links = ref(contactContent.links)
 <template>
   <section
     id="contact"
-    class="text-display-2 w-screen overflow-hidden bg-bgc uppercase text-black"
+    class="contact-display w-screen overflow-hidden bg-bgc font-display uppercase text-black"
   >
     <div data-fade="up" class="flex w-full flex-col px-5 pb-15 pt-10 sm:flex-row lg:px-10">
       <h2 class="mb-30 flex w-full flex-col justify-between sm:mb-0 sm:w-1/2 sm:border-r sm:border-black">
@@ -32,3 +32,11 @@ const links = ref(contactContent.links)
     </div>
   </section>
 </template>
+
+<style scoped>
+.contact-display {
+  font-size: clamp(1rem, 4.6vw, 10rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+</style>

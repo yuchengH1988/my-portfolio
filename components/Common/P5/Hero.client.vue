@@ -32,12 +32,10 @@ onMounted(async () => {
       p.noStroke()
       p.background(255)
 
-      // 計算畫布參考尺寸（較短邊 * 0.9）
       canvasSize = p.windowWidth > p.windowHeight
         ? p.windowHeight
         : p.windowWidth
 
-      // 你的程式是滿版畫布
       const canvas = p.createCanvas(p.windowWidth, p.windowHeight)
       canvas.parent(canvasContainer.value)
 
@@ -46,36 +44,22 @@ onMounted(async () => {
     }
 
     p.draw = () => {
-      // 依滑鼠位置調整目標角度，並以 lerp 平滑過渡
       const toAngle = p.map(p.mouseX, 0, canvasSize - 50, 0.1, 0.65, true)
       rotateAngle = p.lerp(rotateAngle, toAngle, 0.01)
 
-      // 清背景
       p.fill(bg)
       p.rect(0, 0, p.windowWidth, p.windowHeight)
 
       const shadowSpeed = p.map(Math.abs(canvasSize / 2 - p.mouseY), 0, canvasSize / 2, 1, 3, true)
       speed = p.lerp(speed, shadowSpeed, 0.015)
       colorPhase = (colorPhase + speed * Math.min(p.deltaTime, 32) / 16.6667) % 140
-      // if (p.frameCount % 60 === 0) {
-      //   console.log(
-      //     'toAngle', Math.round(toAngle * 10000) / 10000,
-      //     'rotateAngle', Math.round(rotateAngle * 10000) / 10000
-      //   )
-      // console.log(
-      //   'toSpeed', Math.round(shadowSpeed * 10000) / 10000,
-      //   'speed', Math.round(speed * 10000) / 10000
-      // )
-      // }
-      // 初始半徑向量
+
       r = p.createVector(canvasSize * 1.1, 0)
       r.rotate(p.PI / 8)
 
-      // 以視窗中心為原點
       p.translate(p.windowWidth / 2, p.windowHeight / 2)
 
       p.push()
-      // 設定 HSB 並將 alpha 範圍設為 0–1（你 fill 的 alpha=0.3 會正確）
       p.colorMode(p.HSB)
 
       for (let x = 0; x < 66; x++) {
@@ -84,11 +68,10 @@ onMounted(async () => {
           0,
           p.saturation(paintColor),
           colorCircle(p.brightness(paintColor) + x * 7 + colorPhase),
-          0.03 // 透明度：0~1
+          0.03
         )
         paintOctagon(r)
 
-        // 幾何遞推（保持原公式）
         const newAngle = p.createVector(1, 0).angleBetween(r) + rotateAngle
         const d = p.createVector(0, 0).dist(r)
         r = p.createVector(
@@ -99,7 +82,6 @@ onMounted(async () => {
       p.pop()
     }
 
-    // === 工具函式 ===
     function paintOctagon (startVector) {
       const d = startVector.copy()
       p.beginShape()
