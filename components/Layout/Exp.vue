@@ -17,6 +17,15 @@ const experiences = ref(await Promise.all(
     icon: await getImageUrl(item.icon)
   }))
 ))
+const { $ScrollTrigger } = useNuxtApp()
+
+onMounted(() => {
+  nextTick(() => {
+    requestAnimationFrame(() => {
+      $ScrollTrigger.refresh()
+    })
+  })
+})
 
 </script>
 <template>

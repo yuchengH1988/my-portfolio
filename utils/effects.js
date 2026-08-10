@@ -48,60 +48,45 @@ export const aosFadeIn = {
       right: { from: { x: 24 }, to: { x: 0 } }
     }
 
+    ScrollTrigger.getAll().forEach((trigger) => {
+      if (String(trigger.vars.id || '').startsWith('aosFadeIn:')) {
+        trigger.kill()
+      }
+    })
+
     Object.entries(directions).forEach(([dir, { from, to }]) => {
       const targets = gsap.utils.toArray(`[data-fade="${dir}"]`)
-      if (!targets.length) return
+      if (!targets.length) {
+        return
+      }
 
-      gsap.set(targets, { opacity: 0, ...from, force3D: true })
+      targets.forEach((target, index) => {
+        gsap.killTweensOf(target)
 
-      ScrollTrigger.batch(targets, {
-        // 進場偏早一點；離場等元素底部完全離開視窗頂端
-        // （避免手機長卡片還在畫面中就被 onLeave）
-        start: 'top 90%',
-        end: 'bottom top',
-        once,
-        markers,
-        invalidateOnRefresh: true,
-        interval: 0.1,
-        batchMax: 8,
-        onEnter: (elements) => {
-          gsap.to(elements, {
-            opacity: 1,
-            ...to,
-            ...tweenDefaults,
-            stagger: 0.06
-          })
-        },
-        onEnterBack: (elements) => {
-          gsap.to(elements, {
-            opacity: 1,
-            ...to,
-            ...tweenDefaults,
-            stagger: 0.06
-          })
-        },
-        onLeave: (elements) => {
-          if (once) return
-          gsap.to(elements, {
-            opacity: 0,
-            ...from,
-            duration: tweenDefaults.duration,
-            overwrite: 'auto'
-          })
-        },
-        onLeaveBack: (elements) => {
-          if (once) return
-          gsap.to(elements, {
-            opacity: 0,
-            ...from,
-            duration: tweenDefaults.duration,
-            overwrite: 'auto'
-          })
-        }
+        gsap.fromTo(target, {
+          autoAlpha: 0,
+          ...from,
+          force3D: true
+        }, {
+          autoAlpha: 1,
+          ...to,
+          ...tweenDefaults,
+          scrollTrigger: {
+            id: `aosFadeIn:${dir}:${index}`,
+            trigger: target,
+            start: 'top 90%',
+            once,
+            markers,
+            invalidateOnRefresh: true,
+            toggleActions: once ? 'play none none none' : 'play none none reverse'
+          }
+        })
       })
     })
 
-    ScrollTrigger.refresh()
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh()
+    })
   }
 }
 
