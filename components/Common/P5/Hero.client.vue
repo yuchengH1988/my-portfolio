@@ -28,7 +28,7 @@ const SCENE_THEMES = [
     id: 'work',
     bg: [0, 0, 100, 0.8],
     fill: [0, 0, 0, 1],
-    stroke: [0, 0, 20, 1],
+    stroke: [0, 0, 50, 1],
     strokeWeight: 0.5,
     angle: null,
     angleEase: 0.02,
@@ -155,7 +155,7 @@ onMounted(async () => {
       speed = p.lerp(speed, shadowSpeed, 0.015)
       colorPhase = (colorPhase + speed * Math.min(p.deltaTime, 32) / 16.6667) % 140
 
-      r = p.createVector(canvasSize * 1.1, 0)
+      r = p.createVector(canvasSize * 1.2, 0)
       r.rotate(p.PI / 8)
 
       p.translate(p.windowWidth / 2, p.windowHeight / 2)

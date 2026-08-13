@@ -3,14 +3,11 @@ const { $gsap, $ScrollTrigger } = useNuxtApp()
 
 const bgRef = ref(null)
 const heroLayer = ref(null)
-const workLayer = ref(null)
 
 const SECTION_IDS = ['home', 'intro', 'work', 'exp']
 
 const activeIndex = ref(0)
-const activeId = computed(() => SECTION_IDS[activeIndex.value] || SECTION_IDS[0])
 
-let sceneTween = null
 const triggers = []
 
 const setIndex = (index) => {
@@ -32,7 +29,6 @@ onMounted(() => {
   nextTick(() => {
     $gsap.set(bgRef.value, { opacity: 0 })
     $gsap.set(heroLayer.value, { opacity: 1, visibility: 'visible' })
-    $gsap.set(workLayer.value, { opacity: 0, visibility: 'hidden' })
 
     $gsap.to(bgRef.value, {
       opacity: 1,
@@ -63,12 +59,11 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  sceneTween?.kill()
   triggers.forEach(t => t.kill())
   triggers.length = 0
 })
 
-defineExpose({ fadeIn, activeIndex, activeId })
+defineExpose({ fadeIn })
 </script>
 
 <template>
@@ -78,9 +73,6 @@ defineExpose({ fadeIn, activeIndex, activeId })
   >
     <div ref="heroLayer" class="absolute inset-0">
       <CommonP5Hero :active="true" :scene-index="activeIndex" />
-    </div>
-    <div ref="workLayer" class="absolute inset-0">
-      <CommonP5Work :active="false" />
     </div>
   </div>
 </template>
