@@ -22,7 +22,7 @@ const SCENE_THEMES = [
     strokeWeight: 0.5,
     angle: null,
     angleEase: 0.02,
-    layers: 22
+    layers: 28
   },
   {
     id: 'work',
@@ -32,7 +32,7 @@ const SCENE_THEMES = [
     strokeWeight: 0.5,
     angle: null,
     angleEase: 0.02,
-    layers: 33
+    layers: 36
   },
   {
     id: 'exp',

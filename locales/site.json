@@ -58,7 +58,7 @@
   "work": {
     "title": "PROJECTS",
     "summary": "These selected projects highlight my real-world experience across modern web development. Each example includes a brief overview and live demo, demonstrating my ability to solve complex problems, work with different technologies, and deliver effective solutions.",
-    "description": "Over the past 4 years, I have delivered 30+ web projects, including corporate sites, exhibition microsites, and animation-driven experiences. Many involved WordPress CMS integration, i18n, and performance tuning, strengthening my capabilities in motion UI, scalable architecture, and cross-team collaboration.",
+    "description": "Over the past 5 years, I’ve delivered 30+ web projects, from large-scale corporate websites and ERP systems to exhibition microsites and interactive digital experiences. I enjoy working at the intersection of frontend engineering, motion, and interaction—building experiences that are visually engaging, performant, and maintainable.",
     "projects": [
       {
         "title": "Generative Art Collection (p5.js)",
