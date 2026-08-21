@@ -31,27 +31,71 @@
     "skills": [
       {
         "title": "Frontend",
-        "list": ["React.js", "Vue.js", "Nuxt", "Tailwind CSS", "Bootstrap", "GSAP", "p5.js", "Three.js"]
+        "list": [
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Vue.js",
+          "Nuxt",
+          "Next.js",
+          "Tailwind CSS"
+        ]
+      },
+      {
+        "title": "Creative Development",
+        "list": [
+          "GSAP",
+          "Three.js",
+          "p5.js",
+          "SVG Animation",
+          "Canvas",
+          "WebGL"
+        ]
       },
       {
         "title": "Backend / CMS",
-        "list": ["Node.js", "Express.js", "WordPress"]
+        "list": [
+          "Node.js",
+          "Express.js",
+          "WordPress",
+          "REST API"
+        ]
       },
       {
-        "title": "Database",
-        "list": ["MongoDB", "MySQL"]
+        "title": "Database / Cloud",
+        "list": [
+          "MongoDB",
+          "MySQL",
+          "Firebase",
+          "Google Cloud Platform",
+          "AWS"
+        ]
       },
       {
-        "title": "DevOps",
-        "list": ["Git", "Docker", "Nginx", "Google Cloud Platform(GCP)", "AWS"]
+        "title": "DevOps / Quality",
+        "list": [
+          "Git",
+          "Docker",
+          "Nginx",
+          "Accessibility (WCAG)",
+          "Performance Optimization",
+          "OWASP ZAP"
+        ]
       },
       {
         "title": "Testing",
-        "list": ["Jest", "Mocha / Chai"]
+        "list": [
+          "Jest",
+          "Mocha",
+          "Chai"
+        ]
       },
       {
         "title": "Languages",
-        "list": ["Chinese (Mandarin & Taiwanese)", "English"]
+        "list": [
+          "Chinese — Native",
+          "English — Professional Working Proficiency"
+        ]
       }
     ]
   },
