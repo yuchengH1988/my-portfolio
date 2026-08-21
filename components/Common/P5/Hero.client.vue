@@ -47,6 +47,7 @@ const SCENE_THEMES = [
 ]
 
 const THEME_LERP = 0.04
+const CENTER_ROTATION_SPEED = 0.0016
 
 const { $gsap } = useNuxtApp()
 const canvasContainer = ref(null)
@@ -95,6 +96,7 @@ onMounted(async () => {
     let canvasSize, r
     let speed = 2
     let rotateAngle = 0.5
+    let centerRotation = 0
     let colorPhase = 0
 
     const cur = {
@@ -104,7 +106,8 @@ onMounted(async () => {
       strokeWeight: 0,
       angleEase: 0.01,
       layers: 66,
-      homeFillMix: 1
+      homeFillMix: 1,
+      centerRotationMix: 0
     }
 
     p.setup = () => {
@@ -129,6 +132,7 @@ onMounted(async () => {
       const mouseAngle = p.map(p.mouseX, 0, canvasSize - 50, 0.1, 0.65, true)
       const targetAngle = target.angle == null ? mouseAngle : target.angle
       const targetHomeMix = target.fill == null ? 1 : 0
+      const targetCenterRotationMix = ['intro', 'work'].includes(target.id) ? 1 : 0
       const targetFill = target.fill ? [...target.fill] : cur.fill
       const targetStroke = [...target.stroke]
       const targetBg = [...target.bg]
@@ -142,6 +146,7 @@ onMounted(async () => {
       cur.angleEase = p.lerp(cur.angleEase, target.angleEase, THEME_LERP)
       cur.layers = p.lerp(cur.layers, target.layers, THEME_LERP)
       cur.homeFillMix = p.lerp(cur.homeFillMix, targetHomeMix, THEME_LERP)
+      cur.centerRotationMix = p.lerp(cur.centerRotationMix, targetCenterRotationMix, THEME_LERP)
 
       rotateAngle = p.lerp(rotateAngle, targetAngle, cur.angleEase)
 
@@ -155,10 +160,12 @@ onMounted(async () => {
       speed = p.lerp(speed, shadowSpeed, 0.015)
       colorPhase = (colorPhase + speed * Math.min(p.deltaTime, 32) / 16.6667) % 140
 
-      r = p.createVector(canvasSize * 1.2, 0)
+      r = p.createVector(canvasSize * 1.3, 0)
       r.rotate(p.PI / 8)
 
       p.translate(p.windowWidth / 2, p.windowHeight / 2)
+      centerRotation += CENTER_ROTATION_SPEED * cur.centerRotationMix * Math.min(p.deltaTime, 32) / 16.6667
+      p.rotate(centerRotation * cur.centerRotationMix)
 
       p.push()
       p.stroke(cur.stroke[0], cur.stroke[1], cur.stroke[2], cur.stroke[3])
