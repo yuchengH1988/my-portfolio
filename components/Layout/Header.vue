@@ -12,7 +12,7 @@ const headerContent = siteContent.header
 const navItems = headerContent.nav
 const HEADER_BREAKPOINTS = [
   ['(max-width: 767px)', 'calc(100vw - 24px)', 0],
-  ['(min-width: 768px)', '640px', 20]
+  ['(min-width: 768px)', '640px', 12]
 ]
 
 function applyHeaderAnimation (width, pad) {
@@ -24,9 +24,9 @@ function applyHeaderAnimation (width, pad) {
     xPercent: -50,
     top: scrolled ? 12 : 0,
     width: scrolled ? width : '100vw',
-    paddingLeft: scrolled ? 20 : 0,
+    paddingLeft: scrolled ? pad : 0,
     paddingRight: scrolled ? pad : 0,
-    borderRadius: scrolled ? 999 : 0,
+    '--header-cut': scrolled ? '16px' : '0px',
     backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.72)' : 'rgba(0, 0, 0, 0.3)',
     backdropFilter: scrolled ? 'blur(12px)' : 'blur(0px)',
     boxShadow: scrolled ? '0 12px 40px rgba(0, 0, 0, 0.18)' : '0 0 0 rgba(0, 0, 0, 0)'
@@ -116,7 +116,7 @@ onBeforeUnmount(() => {
 <template>
   <header
     ref="headerRef"
-    class="fixed top-0 z-100 w-full overflow-hidden bg-black/30 px-0 opacity-0"
+    class="site-header fixed top-0 z-100 w-full overflow-hidden bg-black/30 px-0 opacity-0"
   >
     <div class="text-body-2 set relative flex w-full items-center justify-between text-white">
       <CommonButtonBox
@@ -187,3 +187,19 @@ onBeforeUnmount(() => {
     </div>
   </header>
 </template>
+
+<style scoped>
+.site-header {
+  --header-cut: 0;
+
+  clip-path:
+    polygon(
+      var(--header-cut) 0,
+      calc(100% - var(--header-cut)) 0,
+      100% 50%,
+      calc(100% - var(--header-cut)) 100%,
+      var(--header-cut) 100%,
+      0 50%
+    );
+}
+</style>
