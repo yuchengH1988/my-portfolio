@@ -26,7 +26,7 @@
   "intro": {
     "eyebrow": "Introduction",
     "title": "Overview",
-    "body": "Frontend-heavy Fullstack Engineer with 5 years of experience building enterprise websites, product platforms, ERP systems, and interactive web experiences.\n\nMy primary expertise is in Vue, Nuxt, JavaScript, and Node.js. I enjoy translating complex business requirements into maintainable systems, balancing performance, usability, and long-term scalability.\n\nBeyond implementation, I work closely with designers, PMs, and backend engineers to deliver products that solve real user and business problems.",
+    "body": "Frontend-heavy Fullstack Engineer with 5 years of experience building enterprise websites, product platforms, ERP systems, and interactive web experiences.\n\nMy primary expertise is in Vue, Nuxt, React, JavaScript, and Node.js. I enjoy translating complex business requirements into maintainable systems, balancing performance, usability, and long-term scalability.\n\nBeyond implementation, I work closely with designers, PMs, and backend engineers to deliver products that solve real user and business problems.",
     "skillsTitle": "Technical Skills",
     "skills": [
       {
@@ -108,7 +108,13 @@
         "title": "Generative Art Collection (p5.js)",
         "description": "Creative coding experiments on OpenProcessing",
         "highlight": ["Generative visuals with p5.js", "30+ interactive sketches", "Creative coding exploration"],
-        "image": "openprocess.webp",
+        "images": [
+          { "desktop": "openprocess.webp" },
+          { "desktop": "openprocess_1.jpg" },
+          { "desktop": "openprocess_2.jpg" },
+          { "desktop": "openprocess_3.jpg" },
+          { "desktop": "openprocess_4.jpg" }
+        ],
         "alt": "Generative Art Collection project image",
         "link": "https://openprocessing.org/user/436847#sketches"
       },
@@ -120,7 +126,12 @@
           "Interactive quiz with downloadable image & video results",
           "Horizontal storytelling experience with GSAP"
         ],
-        "image": "byebye1987.webp",
+        "images": [
+          { "desktop": "byebye1987.webp" },
+          { "desktop": "byebye1987_1.jpg" },
+          { "desktop": "byebye1987_2.jpg" },
+          { "desktop": "byebye1987_3.jpg" }
+        ],
         "alt": "Goodbye 1987 interactive film website project image",
         "link": "https://untilwemeetagain1987.com/"
       },
@@ -128,7 +139,12 @@
         "title": "Sino-French War (Interactive Story)",
         "description": "Narrative web experience for NMTH",
         "highlight": ["Scroll-driven storytelling", "SVG + animation integration", "Multi-section interaction design"],
-        "image": "chine-fa.webp",
+        "images": [
+          { "desktop": "ching_fa.webp" },
+          { "desktop": "ching_fa_1.jpg" },
+          { "desktop": "ching_fa_2.jpg" },
+          { "desktop": "ching_fa_3.jpg" }
+        ],
         "alt": "Sino-French War project image",
         "link": "https://taiwanoverseas.nmth.gov.tw/sino-french-war"
       },
@@ -136,7 +152,10 @@
         "title": "Bai Bai 1.0 (CMS + Animation)",
         "description": "Content-driven site built with WordPress + Nuxt",
         "highlight": ["SVG animation with GSAP", "Multi-language CMS integration", "Legacy site optimization"],
-        "image": "paipai.webp",
+        "images": [
+          { "desktop": "paipai.webp" },
+          { "desktop": "paipai_1.jpg" }
+        ],
         "alt": "Bai Bai project image",
         "link": "https://paipai.blog/"
       },
@@ -144,7 +163,9 @@
         "title": "Far Eastern New Century (Global Corporate Website)",
         "description": "Contributed to the frontend development of a large-scale multilingual corporate website",
         "highlight": ["Supported the delivery of a 90+ page enterprise platform", "Built reusable components and page templates", "Integrated WordPress CMS with i18n support","Security remediation and frontend enhancements"],
-        "image": "fenc.webp",
+        "images": [
+          { "desktop": "fenc.webp" }
+        ],
         "alt": "Far Eastern New Century project image",
         "link": "https://www.fenc.com/"
       }

@@ -165,7 +165,8 @@ onMounted(async () => {
 
       p.translate(p.windowWidth / 2, p.windowHeight / 2)
       centerRotation += CENTER_ROTATION_SPEED * cur.centerRotationMix * Math.min(p.deltaTime, 32) / 16.6667
-      p.rotate(centerRotation * cur.centerRotationMix)
+      centerRotation = centerRotation % p.TWO_PI
+      p.rotate(centerRotation)
 
       p.push()
       p.stroke(cur.stroke[0], cur.stroke[1], cur.stroke[2], cur.stroke[3])

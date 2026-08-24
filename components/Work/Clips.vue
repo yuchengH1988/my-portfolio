@@ -1,35 +1,26 @@
 <script setup>
-import imgSino from '~/assets/images/chine-fa.webp'
-import imgPaipai from '~/assets/images/paipai.webp'
-import imgOpenProcess from '~/assets/images/openprocess.webp'
-import imgSinoMobile from '~/assets/images/chine-fa-m.webp'
-import imgPaipaiMobile from '~/assets/images/paipai-m.webp'
-import imgOpenProcessMobile from '~/assets/images/openprocess-m.webp'
-import imgByeBye1987 from '~/assets/images/byebye1987.webp'
-import imgByeBye1987Mobile from '~/assets/images/byebye1987_m.webp'
-import imgFenc from '~/assets/images/fenc.webp'
-import imgFencMobile from '~/assets/images/fenc-mobile.webp'
+import { useAllStore } from '~/store/all'
 import siteContent from '~/locales/site.json'
 
-const imageMap = {
-  'chine-fa.webp': imgSino,
-  'paipai.webp': imgPaipai,
-  'openprocess.webp': imgOpenProcess,
-  'byebye1987.webp': imgByeBye1987,
-  'fenc.webp': imgFenc
-}
+const AUTOPLAY_DELAY = 2800
+const { isCursor } = storeToRefs(useAllStore())
 
-const mobileImageMap = {
-  'chine-fa.webp': imgSinoMobile,
-  'paipai.webp': imgPaipaiMobile,
-  'openprocess.webp': imgOpenProcessMobile,
-  'byebye1987.webp': imgByeBye1987Mobile,
-  'fenc.webp': imgFencMobile
-}
+const imageModules = import.meta.glob('../../assets/images/*.{webp,jpg,jpeg,png}', {
+  eager: true,
+  import: 'default'
+})
 
-const cleanAssetUrl = url => String(url).split('?')[0]
-const imgUrl = name => cleanAssetUrl(imageMap[name] || name)
-const mobileImgUrl = name => cleanAssetUrl(mobileImageMap[name] || imageMap[name] || name)
+const imageUrls = Object.fromEntries(
+  Object.entries(imageModules).map(([path, url]) => [
+    path.split('/').pop(),
+    String(url).split('?')[0]
+  ])
+)
+
+const mediaRefs = ref([])
+const slideIndexes = ref({})
+const autoplayTimers = new Map()
+let observer = null
 
 const splitTitle = (title) => {
   const match = String(title).match(/^(.*?)\s*\((.*)\)\s*$/)
@@ -37,12 +28,135 @@ const splitTitle = (title) => {
   return { main: match[1].trim(), aside: match[2].trim() }
 }
 
+const resolveAsset = name => imageUrls[name] || name
+
+const normalizeImages = (item) => {
+  const images = item.images?.length ? item.images : [{ desktop: item.image }]
+
+  return images
+    .filter(image => image?.desktop)
+    .map(image => ({
+      desktop: resolveAsset(image.desktop)
+    }))
+}
+
 const selectedData = computed(() =>
   siteContent.work.projects.map(item => ({
     ...item,
-    titleParts: splitTitle(item.title)
+    titleParts: splitTitle(item.title),
+    images: normalizeImages(item)
   }))
 )
+
+function setMediaRef (el, index) {
+  if (el) {
+    mediaRefs.value[index] = el
+  }
+}
+
+function getSlideIndex (index) {
+  return slideIndexes.value[index] || 0
+}
+
+function goToNextSlide (index) {
+  const item = selectedData.value[index]
+  if (!item || item.images.length <= 1) { return }
+
+  slideIndexes.value = {
+    ...slideIndexes.value,
+    [index]: (getSlideIndex(index) + 1) % item.images.length
+  }
+}
+
+function startAutoplay (index) {
+  const item = selectedData.value[index]
+  if (!item || item.images.length <= 1 || autoplayTimers.has(index)) { return }
+
+  autoplayTimers.set(index, window.setInterval(() => {
+    goToNextSlide(index)
+  }, AUTOPLAY_DELAY))
+}
+
+function stopAutoplay (index) {
+  const timer = autoplayTimers.get(index)
+  if (!timer) { return }
+
+  window.clearInterval(timer)
+  autoplayTimers.delete(index)
+}
+
+function resetSlide (index) {
+  if (getSlideIndex(index) === 0) { return }
+
+  slideIndexes.value = {
+    ...slideIndexes.value,
+    [index]: 0
+  }
+}
+
+function handleMediaEnter (index) {
+  if (!isCursor.value) { return }
+
+  startAutoplay(index)
+}
+
+function handleMediaLeave (index) {
+  if (!isCursor.value) { return }
+
+  stopAutoplay(index)
+  resetSlide(index)
+}
+
+onMounted(async () => {
+  await nextTick()
+
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const index = Number(entry.target.dataset.projectIndex)
+      if (isCursor.value) {
+        if (!entry.isIntersecting) {
+          stopAutoplay(index)
+          resetSlide(index)
+        }
+        return
+      }
+
+      if (entry.isIntersecting) {
+        startAutoplay(index)
+      } else {
+        stopAutoplay(index)
+      }
+    })
+  }, {
+    rootMargin: '0px 0px -10% 0px',
+    threshold: 0.2
+  })
+
+  mediaRefs.value.forEach((el) => {
+    observer.observe(el)
+  })
+})
+
+watch(isCursor, (enabled) => {
+  autoplayTimers.forEach((_, index) => {
+    stopAutoplay(index)
+    if (enabled) {
+      resetSlide(index)
+    }
+  })
+})
+
+onBeforeUpdate(() => {
+  mediaRefs.value = []
+})
+
+onBeforeUnmount(() => {
+  observer?.disconnect()
+  autoplayTimers.forEach((timer) => {
+    window.clearInterval(timer)
+  })
+  autoplayTimers.clear()
+})
 </script>
 
 <template>
@@ -50,7 +164,9 @@ const selectedData = computed(() =>
     <div
       v-for="(item, idx) in selectedData"
       :key="item.title"
-      class="project-row group grid grid-cols-12 gap-4 border-b border-bgc/20 py-8 text-bgc transition-colors duration-500 last:border-b-0 lg:items-center lg:gap-x-4"
+      class="project-row group grid grid-cols-12 gap-4 border-b border-bgc/20 py-4 text-bgc transition-colors duration-500 last:border-b-0 lg:items-center lg:gap-x-4"
+      @mouseenter="handleMediaEnter(idx)"
+      @mouseleave="handleMediaLeave(idx)"
     >
       <div class="col-span-12 flex flex-col items-center justify-center gap-2 lg:col-span-9 lg:flex-row lg:justify-start lg:gap-8">
         <span class="text-body-3 mr-auto text-bgc/60">
@@ -77,22 +193,42 @@ const selectedData = computed(() =>
         </div>
       </div>
       <a
+        :ref="el => setMediaRef(el, idx)"
         :href="item.link"
+        :data-project-index="idx"
         target="_blank"
         rel="noopener noreferrer"
-        class="project-media relative col-span-12 mx-auto aspect-[16/10] max-w-[300px] overflow-hidden rounded-lg lg:col-span-3 lg:max-w-none"
+        class="project-media relative col-span-12 mx-auto aspect-[4/3] w-full max-w-[300px] overflow-hidden rounded-lg lg:col-span-3 lg:max-w-none"
       >
-        <picture class="block size-full">
-          <source media="(max-width: 539px)" :srcset="mobileImgUrl(item.image)" />
-          <img
-            :src="imgUrl(item.image)"
-            :alt="item.alt || item.title"
-            class="ease-out size-full object-cover transition duration-700"
-            :class="[idx === 2 && 'object-left lg:object-center']"
-            loading="lazy"
-          />
-        </picture>
-        <span class="pointer-events-none absolute bottom-2 right-2 flex size-9 items-center justify-center rounded-full border border-white/25 bg-black/45 text-white backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 size-full">
+          <div
+            v-for="(image, imageIndex) in item.images"
+            :key="`${item.title}-${image.desktop}`"
+            class="absolute inset-0 block size-full"
+            :class="imageIndex === getSlideIndex(idx) ? 'project-slide is-active' : 'project-slide'"
+          >
+            <img
+              :src="image.desktop"
+              :alt="item.alt || item.title"
+              class="block size-full object-cover"
+              :class="[idx === 2 && 'object-left lg:object-center']"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div
+          v-if="item.images.length > 1"
+          class="pointer-events-none absolute bottom-2 left-2 z-[2] flex items-center gap-1.5 rounded-full px-2 py-1"
+          aria-hidden="true"
+        >
+          <span
+            v-for="(_, imageIndex) in item.images"
+            :key="`${item.title}-dot-${imageIndex}`"
+            class="block size-1.5 rounded-full transition-all duration-300"
+            :class="imageIndex === getSlideIndex(idx) ? 'w-4 bg-black' : 'bg-black/35'"
+          ></span>
+        </div>
+        <span class="pointer-events-none absolute bottom-2 right-2 z-[2] flex size-9 items-center justify-center text-black transition-transform duration-300 group-hover:scale-110">
           <AtomIcon name="external-link" class="size-4" />
         </span>
       </a>
@@ -101,14 +237,30 @@ const selectedData = computed(() =>
 </template>
 
 <style scoped>
+.project-slide {
+  z-index: 0;
+  opacity: 0;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+  transform: translateX(100%);
+  will-change: opacity, transform;
+}
+
+.project-slide.is-active {
+  z-index: 1;
+  opacity: 1;
+  transform: translateX(0);
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .project-media img {
+  .project-media .project-slide.is-active img {
     filter: grayscale(1);
+    transition: filter 0.7s ease;
   }
 
-  .project-row:hover .project-media img {
+  .project-row:hover .project-media .project-slide.is-active img {
     filter: grayscale(0);
-    transform: scale(1.035);
   }
 }
 </style>
