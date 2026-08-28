@@ -105,6 +105,23 @@
     "description": "Over the past 5 years, I’ve delivered 30+ web projects, from large-scale corporate websites and ERP systems to exhibition microsites and interactive digital experiences. I enjoy working at the intersection of frontend engineering, motion, and interaction—building experiences that are visually engaging, performant, and maintainable.",
     "projects": [
       {
+        "title": "Pay La (Shared Expense Web App)",
+        "description": "Mobile-first shared expense and settlement web application built with Next.js, Firebase.",
+        "highlight": [
+          "Google Sign-In with Firebase Authentication",
+          "Group-based expense tracking, split calculation, balance engine, and settlements",
+          "Static export deployment with GitHub Pages and custom domain"
+        ],
+        "images": [
+          { "desktop": "pay_la_1.jpg" },
+          { "desktop": "pay_la_2.jpg" },
+          { "desktop": "pay_la_3.jpg" },
+          { "desktop": "pay_la_4.jpg" }
+        ],
+        "alt": "Pay La shared expense web app project image",
+        "link": "https://pay-la.calvin-huang.com/"
+      },
+      {
         "title": "Generative Art Collection (p5.js)",
         "description": "Creative coding experiments on OpenProcessing",
         "highlight": ["Generative visuals with p5.js", "30+ interactive sketches", "Creative coding exploration"],
