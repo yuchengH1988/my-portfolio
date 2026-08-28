@@ -48,11 +48,15 @@ const SCENE_THEMES = [
 
 const THEME_LERP = 0.04
 const CENTER_ROTATION_SPEED = 0.0016
+const SCROLL_ROTATION_BOOST_MAX = 0.018
+const SCROLL_ROTATION_BOOST_GAIN = 0.008
+const SCROLL_ROTATION_BOOST_EASE = 0.08
 
 const { $gsap } = useNuxtApp()
 const canvasContainer = ref(null)
 const coverEl = ref(null)
 let sketchInstance = null
+let cleanupScrollBoost = null
 
 const props = defineProps({
   active: {
@@ -97,6 +101,7 @@ onMounted(async () => {
     let speed = 2
     let rotateAngle = 0.5
     let centerRotation = 0
+    let scrollRotationBoost = 0
     let colorPhase = 0
 
     const cur = {
@@ -123,6 +128,27 @@ onMounted(async () => {
       canvas.parent(canvasContainer.value)
       p.background(0)
       p.frameRate(60)
+
+      let lastScrollY = window.scrollY
+      let lastScrollAt = window.performance.now()
+      const onScroll = () => {
+        const now = window.performance.now()
+        const scrollY = window.scrollY
+        const distance = Math.abs(scrollY - lastScrollY)
+        const elapsed = Math.max(16, now - lastScrollAt)
+
+        lastScrollY = scrollY
+        lastScrollAt = now
+        scrollRotationBoost = Math.min(
+          SCROLL_ROTATION_BOOST_MAX,
+          scrollRotationBoost + distance / elapsed * SCROLL_ROTATION_BOOST_GAIN
+        )
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true })
+      cleanupScrollBoost = () => {
+        window.removeEventListener('scroll', onScroll)
+      }
     }
 
     p.draw = () => {
@@ -164,7 +190,8 @@ onMounted(async () => {
       r.rotate(p.PI / 8)
 
       p.translate(p.windowWidth / 2, p.windowHeight / 2)
-      centerRotation += CENTER_ROTATION_SPEED * cur.centerRotationMix * Math.min(p.deltaTime, 32) / 16.6667
+      scrollRotationBoost = p.lerp(scrollRotationBoost, 0, SCROLL_ROTATION_BOOST_EASE)
+      centerRotation += (CENTER_ROTATION_SPEED + scrollRotationBoost) * cur.centerRotationMix * Math.min(p.deltaTime, 32) / 16.6667
       centerRotation = centerRotation % p.TWO_PI
       p.rotate(centerRotation)
 
@@ -229,6 +256,7 @@ onMounted(async () => {
 })
 
 onBeforeUnmount(() => {
+  cleanupScrollBoost?.()
   if (sketchInstance) { sketchInstance.remove() }
 })
 </script>
