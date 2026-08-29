@@ -112,6 +112,7 @@
           "Group-based expense tracking, split calculation, balance engine, and settlements",
           "Static export deployment with GitHub Pages and custom domain"
         ],
+        "tags": ["Next.js", "Firebase"],
         "images": [
           { "desktop": "pay_la_1.jpg" },
           { "desktop": "pay_la_2.jpg" },
@@ -122,9 +123,10 @@
         "link": "https://pay-la.calvin-huang.com/"
       },
       {
-        "title": "Generative Art Collection (p5.js)",
+        "title": "Generative Art Collection",
         "description": "Creative coding experiments on OpenProcessing",
         "highlight": ["Generative visuals with p5.js", "30+ interactive sketches", "Creative coding exploration"],
+        "tags": ["p5.js", "CreativeCoding", "GenerativeArt"],
         "images": [
           { "desktop": "openprocess.webp" },
           { "desktop": "openprocess_1.jpg" },
@@ -143,6 +145,7 @@
           "Interactive quiz with downloadable image & video results",
           "Horizontal storytelling experience with GSAP"
         ],
+        "tags": ["Nuxt", "GSAP", "p5.js"],
         "images": [
           { "desktop": "byebye1987.webp" },
           { "desktop": "byebye1987_1.jpg" },
@@ -156,6 +159,7 @@
         "title": "Sino-French War (Interactive Story)",
         "description": "Narrative web experience for NMTH",
         "highlight": ["Scroll-driven storytelling", "SVG + animation integration", "Multi-section interaction design"],
+        "tags": ["GSAP", "Three.js", "Storytelling"],
         "images": [
           { "desktop": "ching_fa.webp" },
           { "desktop": "ching_fa_1.jpg" },
@@ -169,6 +173,7 @@
         "title": "Bai Bai 1.0 (CMS + Animation)",
         "description": "Content-driven site built with WordPress + Nuxt",
         "highlight": ["SVG animation with GSAP", "Multi-language CMS integration", "Legacy site optimization"],
+        "tags": ["WordPress CMS", "Nuxt", "GSAP"],
         "images": [
           { "desktop": "paipai.webp" },
           { "desktop": "paipai_1.jpg" }
@@ -180,6 +185,7 @@
         "title": "Far Eastern New Century (Global Corporate Website)",
         "description": "Contributed to the frontend development of a large-scale multilingual corporate website",
         "highlight": ["Supported the delivery of a 90+ page enterprise platform", "Built reusable components and page templates", "Integrated WordPress CMS with i18n support","Security remediation and frontend enhancements"],
+        "tags": ["Enterprise", "Nuxt", "i18n"],
         "images": [
           { "desktop": "fenc.webp" }
         ],

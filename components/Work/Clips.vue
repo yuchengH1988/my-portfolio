@@ -44,7 +44,8 @@ const selectedData = computed(() =>
   siteContent.work.projects.map(item => ({
     ...item,
     titleParts: splitTitle(item.title),
-    images: normalizeImages(item)
+    images: normalizeImages(item),
+    tags: (item.tags || []).slice(0, 3)
   }))
 )
 
@@ -185,11 +186,27 @@ onBeforeUnmount(() => {
           <p class="text-body-2 text-bgc/90">
             {{ item.description }}
           </p>
-          <p class="text-body-3 mt-2 flex flex-wrap gap-x-3 gap-y-1 text-bgc/60 lg:mt-4">
-            <span v-for="point in item.highlight.slice(0, 2)" :key="point">
+          <p
+            v-if="item.highlight?.length"
+            class="text-body-3 mt-2 flex flex-wrap gap-x-3 gap-y-1 text-bgc/60 lg:mt-4"
+          >
+            <span v-for="point in item.highlight.slice(0, 3)" :key="point">
               {{ point }}
             </span>
           </p>
+          <div
+            v-if="item.tags.length"
+            class="mt-4 flex flex-wrap gap-2"
+            aria-label="Project skills"
+          >
+            <span
+              v-for="tag in item.tags"
+              :key="`${item.title}-${tag}`"
+              class="text-body-3 rounded-full border border-bgc/25 px-3 py-1 text-bgc/70"
+            >
+              {{ tag }}
+            </span>
+          </div>
         </div>
       </div>
       <a
