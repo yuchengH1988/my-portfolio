@@ -12,7 +12,8 @@ const SCENE_THEMES = [
     strokeWeight: 0,
     angle: null,
     angleEase: 0.01,
-    layers: 66
+    layers: 66,
+    homeAlpha: 0.03
   },
   {
     id: 'intro',
@@ -22,7 +23,8 @@ const SCENE_THEMES = [
     strokeWeight: 0.5,
     angle: null,
     angleEase: 0.02,
-    layers: 28
+    layers: 28,
+    homeAlpha: 0.03
   },
   {
     id: 'work',
@@ -32,7 +34,8 @@ const SCENE_THEMES = [
     strokeWeight: 0.5,
     angle: null,
     angleEase: 0.02,
-    layers: 36
+    layers: 36,
+    homeAlpha: 0.03
   },
   {
     id: 'exp',
@@ -42,7 +45,8 @@ const SCENE_THEMES = [
     strokeWeight: 0,
     angle: null,
     angleEase: 0.01,
-    layers: 66
+    layers: 66,
+    homeAlpha: 0.014
   }
 ]
 
@@ -112,7 +116,8 @@ onMounted(async () => {
       angleEase: 0.01,
       layers: 66,
       homeFillMix: 1,
-      centerRotationMix: 0
+      centerRotationMix: 0,
+      homeAlpha: 0.03
     }
 
     p.setup = () => {
@@ -173,6 +178,7 @@ onMounted(async () => {
       cur.layers = p.lerp(cur.layers, target.layers, THEME_LERP)
       cur.homeFillMix = p.lerp(cur.homeFillMix, targetHomeMix, THEME_LERP)
       cur.centerRotationMix = p.lerp(cur.centerRotationMix, targetCenterRotationMix, THEME_LERP)
+      cur.homeAlpha = p.lerp(cur.homeAlpha, target.homeAlpha, THEME_LERP)
 
       rotateAngle = p.lerp(rotateAngle, targetAngle, cur.angleEase)
 
@@ -206,7 +212,7 @@ onMounted(async () => {
           0,
           p.saturation(paintColor),
           colorCircle(p.brightness(paintColor) + x * 7 + colorPhase),
-          0.03
+          cur.homeAlpha
         )
 
         const themeFill = p.color(cur.fill[0], cur.fill[1], cur.fill[2], cur.fill[3])
