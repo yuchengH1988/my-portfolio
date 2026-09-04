@@ -44,13 +44,32 @@ function closeModal () {
   emit('update:modelValue', false)
 }
 
+function closeInfo () {
+  isInfoOpen.value = false
+}
+
+function handleCloseClick () {
+  if (isInfoOpen.value) {
+    closeInfo()
+    return
+  }
+
+  closeModal()
+}
+
+function closeInfoOnDesktop () {
+  if (window.innerWidth < 1024) { return }
+
+  closeInfo()
+}
+
 function toggleInfo () {
   isInfoOpen.value = !isInfoOpen.value
 }
 
 function handleKeydown (event) {
   if (event.key === 'Escape') {
-    closeModal()
+    handleCloseClick()
   }
 }
 
@@ -90,7 +109,7 @@ onBeforeUnmount(() => {
           type="button"
           class="absolute inset-0 cursor-default"
           aria-label="Close project modal"
-          @click="closeModal"
+          @click="handleCloseClick"
         ></button>
 
         <div class="relative z-1 flex size-full max-h-[90vh] max-w-[1180px] flex-col">
@@ -119,7 +138,7 @@ onBeforeUnmount(() => {
               type="button"
               class="flex size-10 items-center justify-center text-white/80 transition-colors duration-300 hover:text-white"
               aria-label="Close project modal"
-              @click="closeModal"
+              @click="handleCloseClick"
             >
               <AtomIcon name="x" class="size-5" />
             </button>
@@ -158,6 +177,7 @@ onBeforeUnmount(() => {
               <div
                 v-if="isInfoOpen"
                 class="absolute inset-0 z-[30] flex lg:justify-end"
+                @click.self="closeInfoOnDesktop"
               >
                 <aside
                   data-lenis-prevent

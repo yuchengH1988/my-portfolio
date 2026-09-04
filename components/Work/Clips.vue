@@ -236,7 +236,7 @@ onBeforeUnmount(() => {
         :ref="el => setMediaRef(el, idx)"
         :data-project-index="idx"
         type="button"
-        class="project-media relative col-span-12 mx-auto aspect-[4/3] w-full max-w-[300px] overflow-hidden rounded-lg lg:col-span-3 lg:max-w-none"
+        class="project-media relative col-span-12 mx-auto aspect-[4/3] w-full max-w-[300px] overflow-hidden rounded-lg lg:col-span-3"
         :aria-label="`Open ${item.titleParts.main} project images`"
         @click="openProjectModal(idx)"
       >
