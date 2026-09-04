@@ -182,6 +182,7 @@ module.exports = {
         'dt/display/1': ['4rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '800' }],
         'mb/display/2': ['2rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '500' }],
         'dt/display/2': ['2.5rem', { lineHeight: '1', letterSpacing: '0px', fontWeight: '500' }],
+        'mb/display/3': ['1.5rem', { lineHeight: '1.05', letterSpacing: '0px', fontWeight: '500' }],
         'mb/head/1': ['1.125rem', { lineHeight: '1.5', letterSpacing: '0px', fontWeight: '600' }],
         'dt/head/1': ['1.5rem', { lineHeight: '1.5', letterSpacing: '0px', fontWeight: '600' }],
         'mb/head/2': ['1rem', { lineHeight: '1.5', letterSpacing: '0px', fontWeight: '600' }],

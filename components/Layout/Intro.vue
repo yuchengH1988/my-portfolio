@@ -138,19 +138,21 @@ const skills = ref(introContent.skills)
           >
             <h4
               data-fade="left"
-              class="text-display-2 mb-1 text-black/70 duration-300 hover:translate-x-10 hover:font-light"
+              class="text-display-3 mb-2 text-black/70 duration-300 hover:translate-x-10 hover:font-light lg:mb-1"
             >
               {{ title }}
             </h4>
-            <span
-              v-for="(item, i) in list"
-              :key="i"
-              data-fade="right"
-              class="text-display-2 pl-7 text-black/40 duration-300 sm:pl-14"
-              :class="isCursor && 'hover:ml-10 hover:font-light'"
-            >
-              {{ item }}
-            </span>
+            <div class="grid grid-cols-2 gap-x-4 gap-y-1 lg:flex lg:flex-col lg:gap-0">
+              <span
+                v-for="(item, i) in list"
+                :key="i"
+                data-fade="right"
+                class="text-display-3 text-black/40 duration-300 lg:pl-14"
+                :class="isCursor && 'hover:ml-10 hover:font-light'"
+              >
+                {{ item }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
