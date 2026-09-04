@@ -147,7 +147,7 @@ const skills = ref(introContent.skills)
                 v-for="(item, i) in list"
                 :key="i"
                 data-fade="right"
-                class="text-display-3 text-black/40 duration-300 lg:pl-14"
+                class="sm:text-display-3 font-display text-sm/display/4 text-black/40 duration-300 lg:pl-14"
                 :class="isCursor && 'hover:ml-10 hover:font-light'"
               >
                 {{ item }}
