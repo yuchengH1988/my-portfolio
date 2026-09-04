@@ -30,7 +30,7 @@ const SCENE_THEMES = [
     id: 'work',
     bg: [0, 0, 100, 0.8],
     fill: [0, 0, 0, 1],
-    stroke: [0, 0, 50, 1],
+    stroke: [0, 0, 30, 1],
     strokeWeight: 0.5,
     angle: null,
     angleEase: 0.02,
