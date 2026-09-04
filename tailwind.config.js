@@ -190,7 +190,7 @@ module.exports = {
         'dt/body/1': ['1.5rem', { lineHeight: '1.25', letterSpacing: '0px', fontWeight: '400' }],
         'mb/body/2': ['0.875rem', { lineHeight: '1.25', letterSpacing: '0px', fontWeight: '400' }],
         'dt/body/2': ['1.25rem', { lineHeight: '1.25', letterSpacing: '0px', fontWeight: '400' }],
-        'mb/body/3': ['0.75rem', { lineHeight: '1.25', letterSpacing: '0px', fontWeight: '400' }],
+        'mb/body/3': ['0.875rem', { lineHeight: '1.25', letterSpacing: '0px', fontWeight: '400' }],
         'dt/body/3': ['1rem', { lineHeight: '1.25', letterSpacing: '0px', fontWeight: '400' }],
         'mb/button/1': ['1rem', { lineHeight: '1.5', letterSpacing: '0px', fontWeight: '700' }],
         'dt/button/1': ['1rem', { lineHeight: '1.5', letterSpacing: '0px', fontWeight: '700' }],

@@ -19,6 +19,9 @@ const imageUrls = Object.fromEntries(
 
 const mediaRefs = ref([])
 const slideIndexes = ref({})
+const isProjectModalOpen = ref(false)
+const selectedProjectIndex = ref(0)
+const selectedModalImageIndex = ref(0)
 const autoplayTimers = new Map()
 let observer = null
 
@@ -48,6 +51,8 @@ const selectedData = computed(() =>
     tags: (item.tags || []).slice(0, 3)
   }))
 )
+
+const selectedProject = computed(() => selectedData.value[selectedProjectIndex.value] || null)
 
 function setMediaRef (el, index) {
   if (el) {
@@ -106,6 +111,13 @@ function handleMediaLeave (index) {
 
   stopAutoplay(index)
   resetSlide(index)
+}
+
+function openProjectModal (index) {
+  selectedProjectIndex.value = index
+  selectedModalImageIndex.value = getSlideIndex(index)
+  stopAutoplay(index)
+  isProjectModalOpen.value = true
 }
 
 onMounted(async () => {
@@ -174,7 +186,14 @@ onBeforeUnmount(() => {
           {{ String(idx + 1).padStart(2, '0') }}
         </span>
         <h3 class="text-display-2 text-balance pb-4 text-center lg:w-1/2 lg:pb-0 lg:text-left">
-          {{ item.titleParts.main }}
+          <a
+            :href="item.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition-opacity duration-300 hover:opacity-60"
+          >
+            {{ item.titleParts.main }}
+          </a>
           <span
             v-if="item.titleParts.aside"
             class="text-head-2 ml-2 mt-0 text-bgc/60 lg:ml-0 lg:mt-1 lg:block"
@@ -186,14 +205,14 @@ onBeforeUnmount(() => {
           <p class="text-body-2 text-bgc/90">
             {{ item.description }}
           </p>
-          <p
+          <div
             v-if="item.highlight?.length"
-            class="text-body-3 mt-2 flex flex-wrap gap-x-3 gap-y-1 text-bgc/60 lg:mt-4"
+            class="text-body-3 mt-2 space-y-1 text-bgc/60 lg:mt-4"
           >
-            <span v-for="point in item.highlight.slice(0, 3)" :key="point">
-              {{ point }}
-            </span>
-          </p>
+            <p v-for="point in item.highlight.slice(0, 3)" :key="point">
+              - {{ point }}
+            </p>
+          </div>
           <div
             v-if="item.tags.length"
             class="mt-4 flex flex-wrap gap-2"
@@ -209,13 +228,13 @@ onBeforeUnmount(() => {
           </div>
         </div>
       </div>
-      <a
+      <button
         :ref="el => setMediaRef(el, idx)"
-        :href="item.link"
         :data-project-index="idx"
-        target="_blank"
-        rel="noopener noreferrer"
+        type="button"
         class="project-media relative col-span-12 mx-auto aspect-[4/3] w-full max-w-[300px] overflow-hidden rounded-lg lg:col-span-3 lg:max-w-none"
+        :aria-label="`Open ${item.titleParts.main} project images`"
+        @click="openProjectModal(idx)"
       >
         <div class="absolute inset-0 size-full">
           <div
@@ -235,21 +254,26 @@ onBeforeUnmount(() => {
         </div>
         <div
           v-if="item.images.length > 1"
-          class="pointer-events-none absolute bottom-2 left-2 z-[2] flex items-center gap-1.5 rounded-full px-2 py-1"
+          class="pointer-events-none absolute bottom-2 left-2 z-[2] flex items-center gap-1.5 rounded-full px-2 py-1 mix-blend-difference"
           aria-hidden="true"
         >
           <span
             v-for="(_, imageIndex) in item.images"
             :key="`${item.title}-dot-${imageIndex}`"
             class="block size-1.5 rounded-full transition-all duration-300"
-            :class="imageIndex === getSlideIndex(idx) ? 'w-4 bg-black' : 'bg-black/35'"
+            :class="imageIndex === getSlideIndex(idx) ? 'w-4 bg-white' : 'bg-white/45'"
           ></span>
         </div>
-        <span class="pointer-events-none absolute bottom-2 right-2 z-[2] flex size-9 items-center justify-center text-black transition-transform duration-300 group-hover:scale-110">
-          <AtomIcon name="external-link" class="size-4" />
+        <span class="pointer-events-none absolute bottom-2 right-2 z-[2] flex items-center justify-center text-white mix-blend-difference transition-transform duration-300 group-hover:scale-[1.2]">
+          <AtomIcon name="info" class="size-6" />
         </span>
-      </a>
+      </button>
     </div>
+    <WorkProjectModal
+      v-model="isProjectModalOpen"
+      :project="selectedProject"
+      :initial-index="selectedModalImageIndex"
+    />
   </div>
 </template>
 

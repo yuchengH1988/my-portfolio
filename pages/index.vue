@@ -21,7 +21,7 @@ onMounted(() => {
 <template>
   <div>
     <CommonP5Background ref="p5BgRef" />
-    <div class="relative z-10 font-default">
+    <div class="z-10 relative font-default">
       <LayoutHome />
       <LayoutIntro />
       <LayoutWork />

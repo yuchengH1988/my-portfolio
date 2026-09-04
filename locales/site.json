@@ -21,12 +21,12 @@
     "heroWords": ["BUILD", "SOLVE", "SHIP"],
     "heroSeparator": "．",
     "name": "YU CHENG HUANG",
-    "role": "Frontend-Heavy Fullstack Engineer"
+    "role": "Frontend-Heavy Full-stack Engineer"
   },
   "intro": {
     "eyebrow": "Introduction",
     "title": "Overview",
-    "body": "Frontend-heavy Fullstack Engineer with 5 years of experience building enterprise websites, product platforms, ERP systems, and interactive web experiences.\n\nMy primary expertise is in Vue, Nuxt, React, JavaScript, and Node.js. I enjoy translating complex business requirements into maintainable systems, balancing performance, usability, and long-term scalability.\n\nBeyond implementation, I work closely with designers, PMs, and backend engineers to deliver products that solve real user and business problems.",
+    "body": "Frontend-heavy Full-Stack Engineer with 5 years of experience building enterprise websites, product platforms, ERP systems, and interactive web experiences.\n\nMy primary expertise is in Vue, Nuxt, React, TypeScript, JavaScript, and Node.js, with additional experience in GSAP, Three.js, and creative coding. I enjoy translating complex requirements into maintainable systems while balancing performance, usability, and interaction.\n\nBeyond implementation, I work closely with designers, PMs, and backend engineers, and have experience taking ownership of product planning, technical architecture, and long-term system improvement.",
     "skillsTitle": "Technical Skills",
     "skills": [
       {
@@ -58,7 +58,7 @@
           "Node.js",
           "Express.js",
           "WordPress",
-          "REST API"
+          "REST APIs"
         ]
       },
       {
@@ -72,22 +72,15 @@
         ]
       },
       {
-        "title": "DevOps / Quality",
+        "title": "Quality / DevOps",
         "list": [
           "Git",
           "Docker",
           "Nginx",
+          "Jest",
           "Accessibility (WCAG)",
           "Performance Optimization",
           "OWASP ZAP"
-        ]
-      },
-      {
-        "title": "Testing",
-        "list": [
-          "Jest",
-          "Mocha",
-          "Chai"
         ]
       },
       {
@@ -101,18 +94,31 @@
   },
   "work": {
     "title": "PROJECTS",
-    "summary": "These selected projects highlight my real-world experience across modern web development. Each example includes a brief overview and live demo, demonstrating my ability to solve complex problems, work with different technologies, and deliver effective solutions.",
+    "summary": "Selected work across product development, enterprise systems, creative frontend, and interactive web experiences.",
     "description": "Over the past 5 years, I’ve delivered 30+ web projects, from large-scale corporate websites and ERP systems to exhibition microsites and interactive digital experiences. I enjoy working at the intersection of frontend engineering, motion, and interaction—building experiences that are visually engaging, performant, and maintainable.",
     "projects": [
       {
         "title": "Pay La (Shared Expense Web App)",
         "description": "Mobile-first shared expense and settlement web application built with Next.js, Firebase.",
         "highlight": [
-          "Google Sign-In with Firebase Authentication",
-          "Group-based expense tracking, split calculation, balance engine, and settlements",
-          "Static export deployment with GitHub Pages and custom domain"
+          "Firebase Authentication and real-time Firestore",
+          "Deterministic split and balance engines",
+          "Next.js static export with GitHub Pages"
         ],
-        "tags": ["Next.js", "Firebase"],
+        "tags": ["Next.js", "React", "TypeScript", "Firebase", "Tailwind CSS"],
+        "detail": {
+          "title": "Pay La",
+          "body": [
+            "<strong>Pay La</strong> is a mobile-first shared expense web app designed to make tracking group spending, splitting expenses, and settling balances simple and transparent.",
+            "Users can create shared groups, invite members, record expenses with equal, exact amount, or percentage-based splits, view calculated balances, and record settlements. Google Sign-In and real-time group data are handled through Firebase Authentication and Cloud Firestore.",
+            "The financial logic is separated from the UI and Firebase layer through deterministic split and balance engines. Resolved expense shares are stored as historical financial records, while group balances are derived from expenses and settlements rather than maintained as a separate source of truth.",
+            "The application is built with Next.js, React, and TypeScript, supports Traditional Chinese and English, and uses Next.js static export for deployment through GitHub Pages with a custom domain."
+          ],
+          "credits": [
+            { "label": "Design & Development", "name": "Calvin Huang" },
+            { "label": "Stack", "name": "Next.js, React, TypeScript, Firebase, Tailwind CSS" }
+          ]
+        },
         "images": [
           { "desktop": "pay_la_1.jpg" },
           { "desktop": "pay_la_2.jpg" },
@@ -123,10 +129,130 @@
         "link": "https://pay-la.calvin-huang.com/"
       },
       {
+        "title": "Enterprise ERP Management System",
+        "description": "Multi-module ERP platform for sales, purchasing, inventory, transactions, and eSign workflows",
+        "highlight": [
+          "Connected sales, purchasing, inventory, and transaction workflows",
+          "Reusable admin components and document architecture",
+          "Quotation PDF and public eSign workflow",
+          "Multi-entry interface with role-based access"
+        ],
+        "tags": [
+          "Nuxt",
+          "Vue",
+          "ERP",
+          "eSign"
+        ],
+        "detail": {
+          "title": "Enterprise ERP Management System",
+          "body": [
+            "<strong>Enterprise ERP Management System</strong> is a multi-module internal operations platform covering sales quotations, purchasing, inventory movement, transaction records, and digital signing workflows.",
+            "The frontend architecture uses shared DataTable, Modal, Selector, AutoForm, and PDF document patterns across multiple ERP modules, while API access is organized through reusable service composables to keep complex workflows consistent and maintainable.",
+            "A key feature is the quotation and eSign flow, where internal users can generate public signing links, customers can complete handwritten signature or email OTP verification, and the backend produces a signed PDF for cloud storage and later access.",
+            "The system also provides separate Admin, Business, and public eSign experiences, with route, menu, and action-level permission control based on different user roles."
+          ],
+          "credits": [
+            {
+              "label": "My Role",
+              "name": "Product Planning, PM & Full-stack Development"
+            },
+            {
+              "label": "Design Support",
+              "name": "Internal Design Team"
+            }
+          ]
+        },
+        "images": [
+          {
+            "desktop": "erp_1.jpg"
+          },
+          {
+            "desktop": "erp_2.jpg"
+          },
+          {
+            "desktop": "erp_3.jpg"
+          },
+          {
+            "desktop": "erp_4.jpg"
+          }
+        ],
+        "alt": "Enterprise ERP management system architecture and workflow diagrams"
+      },
+      {
+        "title": "Goodbye 1987 (Interactive Film Website)",
+        "description": "Interactive promotional website built with Nuxt, GSAP, and p5.js",
+        "highlight": [
+          "Generative visuals and animations with p5.js",
+          "Interactive quiz with downloadable image & video results",
+          "Horizontal storytelling experience with GSAP"
+        ],
+        "tags": ["Nuxt", "GSAP", "p5.js"],
+        "detail": {
+          "title": "Goodbye 1987",
+          "body": [
+            "<strong>Goodbye 1987</strong> is an interactive promotional website created for a film project, combining cinematic storytelling with motion-driven web interactions.",
+            "The experience features horizontal scroll sequences, GSAP-controlled transitions, and p5.js-generated visuals, including animated graphic elements and interactive effects.",
+            "A key part of the project is an interactive quiz that generates personalized visual results, including downloadable images and video content, extending the experience beyond a conventional promotional website."
+          ],
+          "credits": [
+            { "label": "Studio", "name": "Block Studio" },
+            { "label": "Design", "name": "Satoshi Huang" },
+            { "label": "Frontend", "name": "Calvin Huang" }
+          ]
+        },
+        "images": [
+          { "desktop": "byebye1987_1.jpg" },
+          { "desktop": "byebye1987_2.jpg" },
+          { "desktop": "byebye1987_3.jpg" },
+          { "desktop": "byebye1987_4.jpg" },
+          { "desktop": "byebye1987_5.jpg" }
+        ],
+        "alt": "Goodbye 1987 interactive film website project image",
+        "link": "https://untilwemeetagain1987.com/"
+      },
+      {
+        "title": "Sino-French War (Interactive Story)",
+        "description": "Narrative web experience for NMTH",
+        "highlight": [
+            "Scroll-driven 3D storytelling",
+  "Complex animation integration",
+  "Performance and stability optimization"
+        ],
+        "tags": ["GSAP", "Three.js", "Storytelling"],
+        "detail":
+          {
+            "title": "Sino-French War",
+            "body": [
+              "<strong>Sino-French War</strong> is an interactive historical storytelling website created for the National Museum of Taiwan History, combining 3D scenes, complex motion design, and scroll-driven narrative sequences.", "The experience is structured as a long-form digital story, using animated transitions, layered visual elements, and 3D interactions to guide users through historical events while maintaining a continuous narrative flow.", "I joined the project during development, completed the latter half of the frontend implementation, and focused on performance optimization, animation stability, and refining complex interactive sequences across the experience." ],
+            "credits": [
+              { "label": "Studio", "name": "Block Studio" }, { "label": "Client", "name": "National Museum of Taiwan History" }, { "label": "Frontend & Optimization", "name": "Calvin Huang" }, { "label": "Frontend", "name": "Ottis" } ]
+        },
+        "images": [
+          { "desktop": "ching_fa.webp" },
+          { "desktop": "ching_fa_1.jpg" },
+          { "desktop": "ching_fa_2.jpg" },
+          { "desktop": "ching_fa_3.jpg" }
+        ],
+        "alt": "Sino-French War project image",
+        "link": "https://taiwanoverseas.nmth.gov.tw/sino-french-war"
+      },
+      {
         "title": "Generative Art Collection",
         "description": "Creative coding experiments on OpenProcessing",
-        "highlight": ["Generative visuals with p5.js", "30+ interactive sketches", "Creative coding exploration"],
-        "tags": ["p5.js", "CreativeCoding", "GenerativeArt"],
+        "highlight": ["Generative visuals with p5.js", "Nearly 70 interactive sketches", "3D graphics and shader experiments"],
+        "tags": ["p5.js", "3D Graphics", "Shaders", "Creative Coding"],
+        "detail": {
+          "title": "Generative Art Collection",
+          "body": [
+            "An ongoing collection of nearly <strong>70 p5.js sketches</strong> exploring generative art, interactive graphics, and browser-based visual experiments.",
+            "The works experiment with trigonometry, geometric systems, procedural motion, particle behavior, 3D graphics, and shader-based rendering to create evolving visual compositions and interactions.",
+            "Rather than a single project, the collection serves as a continuous creative coding practice for exploring mathematical patterns, visual systems, animation techniques, and real-time graphics in the browser."
+          ],
+          "credits": [
+            { "label": "Creative Coding", "name": "Calvin Huang" },
+            { "label": "Platform", "name": "OpenProcessing" }
+          ]
+        },
         "images": [
           { "desktop": "openprocess.webp" },
           { "desktop": "openprocess_1.jpg" },
@@ -138,59 +264,79 @@
         "link": "https://openprocessing.org/user/436847#sketches"
       },
       {
-        "title": "Goodbye 1987 (Interactive Film Website)",
-        "description": "Interactive promotional website built with Nuxt, GSAP, and p5.js",
-        "highlight": [
-          "Generative visuals and animations with p5.js",
-          "Interactive quiz with downloadable image & video results",
-          "Horizontal storytelling experience with GSAP"
-        ],
-        "tags": ["Nuxt", "GSAP", "p5.js"],
-        "images": [
-          { "desktop": "byebye1987.webp" },
-          { "desktop": "byebye1987_1.jpg" },
-          { "desktop": "byebye1987_2.jpg" },
-          { "desktop": "byebye1987_3.jpg" }
-        ],
-        "alt": "Goodbye 1987 interactive film website project image",
-        "link": "https://untilwemeetagain1987.com/"
+  "title": "Far Eastern New Century (Global Corporate Website)",
+  "description": "Contributed to the frontend development of a large-scale multilingual corporate website",
+  "highlight": [
+    "90+ page enterprise website",
+    "Reusable templates and components",
+    "Multilingual content with i18n",
+    "A11y and security remediation"
+  ],
+  "tags": [
+    "Enterprise",
+    "Nuxt",
+    "i18n"
+  ],
+  "detail": {
+    "title": "Far Eastern New Century",
+    "body": [
+      "<strong>Far Eastern New Century</strong> is a large-scale multilingual corporate website developed by Block Studio, with a complex enterprise content structure spanning more than 90 pages.",
+      "My work focused on frontend implementation, reusable components and page templates, multilingual content handling, and maintaining consistency across a large number of corporate content pages.",
+      "The project also included accessibility improvements, frontend optimization, and security remediation work to support long-term stability and maintainability."
+    ],
+    "credits": [
+      {
+        "label": "Studio",
+        "name": "Block Studio"
       },
       {
-        "title": "Sino-French War (Interactive Story)",
-        "description": "Narrative web experience for NMTH",
-        "highlight": ["Scroll-driven storytelling", "SVG + animation integration", "Multi-section interaction design"],
-        "tags": ["GSAP", "Three.js", "Storytelling"],
-        "images": [
-          { "desktop": "ching_fa.webp" },
-          { "desktop": "ching_fa_1.jpg" },
-          { "desktop": "ching_fa_2.jpg" },
-          { "desktop": "ching_fa_3.jpg" }
-        ],
-        "alt": "Sino-French War project image",
-        "link": "https://taiwanoverseas.nmth.gov.tw/sino-french-war"
-      },
+        "label": "Frontend",
+        "name": "Calvin Huang"
+      }
+    ]
+  }
+},
       {
         "title": "Bai Bai 1.0 (CMS + Animation)",
         "description": "Content-driven site built with WordPress + Nuxt",
-        "highlight": ["SVG animation with GSAP", "Multi-language CMS integration", "Legacy site optimization"],
-        "tags": ["WordPress CMS", "Nuxt", "GSAP"],
+        "highlight": [
+          "SVG animation with GSAP",
+          "Multi-language CMS integration",
+          "Frontend maintenance & optimization"
+        ],
+        "tags": [
+          "WordPress CMS",
+          "Nuxt",
+          "GSAP"
+        ],
+        "detail": {
+          "title": "Bai Bai 1.0",
+          "body": [
+            "<strong>Bai Bai 1.0</strong> is a content-driven website developed by Block Studio, combining WordPress CMS with a Nuxt frontend and GSAP-based motion.",
+            "The project focused on integrating multilingual content from WordPress, building animated SVG and interface transitions, and maintaining a stable content workflow across the site.",
+            "The frontend also involved optimization work within an existing project structure, improving maintainability and supporting continued updates without disrupting the established CMS workflow."
+          ],
+          "credits": [
+            {
+              "label": "Studio",
+              "name": "Block Studio"
+            },
+            {
+              "label": "Frontend",
+              "name": "Calvin Huang"
+            }
+          ]
+        },
         "images": [
-          { "desktop": "paipai.webp" },
-          { "desktop": "paipai_1.jpg" }
+          {
+            "desktop": "paipai.webp"
+          },
+          {
+            "desktop": "paipai_1.jpg"
+          }
         ],
         "alt": "Bai Bai project image",
         "link": "https://paipai.blog/"
-      },
-      {
-        "title": "Far Eastern New Century (Global Corporate Website)",
-        "description": "Contributed to the frontend development of a large-scale multilingual corporate website",
-        "highlight": ["Supported the delivery of a 90+ page enterprise platform", "Built reusable components and page templates", "Integrated WordPress CMS with i18n support","Security remediation and frontend enhancements"],
-        "tags": ["Enterprise", "Nuxt", "i18n"],
-        "images": [
-          { "desktop": "fenc.webp" }
-        ],
-        "alt": "Far Eastern New Century project image",
-        "link": "https://www.fenc.com/"
       }
     ]
   },
@@ -203,13 +349,13 @@
         "icon": "blockstudio.png",
         "date": "Feb 2025 - Jun 2026",
         "points": [
-          "Delivered 6 new projects and maintained 10+ existing websites, including government and enterprise platforms.",
-          "Implemented advanced animation solutions and optimized scroll-based interactions for smooth performance.",
-          "Supported i18n, A11y compliance, and security best practices, collaborating closely with designers and PMs."
-        ]
+  "Delivered 6 new projects and maintained 10+ existing websites and internal systems across government, enterprise, and digital experience work.",
+  "Built reusable frontend architecture and implemented complex interactive experiences using Nuxt, GSAP, p5.js, and Three.js.",
+  "Supported i18n, accessibility, performance, and security improvements while collaborating closely with designers and PMs."
+]
       },
       {
-        "title": "Node. Js Engineer",
+        "title": "Node.js Engineer",
         "companyName": "Bat Mobile Inc",
         "icon": "bat.png",
         "date": "Aug 2021 - Jan 2025",
@@ -225,19 +371,23 @@
         "companyName": "CAMA coffee",
         "icon": "cama.png",
         "date": "Oct 2017 - Jul 2020",
-        "points": ["Managed 3 branches and 10+ staff, strengthening leadership and communication."]
+        "points": [
+  "Managed three branches at different stages of my tenure and supervised teams of 10+ staff."
+]
       },
       {
-        "title": "Other Experience",
+        "title": "Earlier Experience",
         "companyName": "Hospitality & Surveying",
         "icon": "other.png",
-        "date": "2013 - 2017",
-        "points": ["8 years in hospitality & 1 year in surveying; developed strong teamwork and problem-solving abilities."]
+        "date": "Before 2017",
+        "points": [
+    "Built a foundation in customer service, teamwork, operations, and field-based problem solving."
+  ]
       }
     ]
   },
   "contact": {
-    "name": "YuCheng Huang / Calvin",
+    "name": "Yu Cheng Huang / Calvin",
     "title": "contact me",
     "links": [
       {
@@ -261,9 +411,9 @@
         "title": "GitHub link"
       },
       {
-        "name": "Open Process",
+        "name": "OpenProcessing",
         "url": "https://openprocessing.org/user/436847/#sketches",
-        "title": "Open Process link"
+        "title": "OpenProcessing profile"
       }
     ]
   },

@@ -9,7 +9,47 @@
     overflow-x: hidden;
     background-color: #000;
   }
-  html, .none-scroll {
+  html {
+    scrollbar-color: #fff rgb(0 0 0 / 45%);
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: rgb(0 0 0 / 45%);
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgb(0 0 0 / 45%);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #fff;
+      border-radius: 999px;
+    }
+  }
+
+  * {
+    scrollbar-color: #fff rgb(0 0 0 / 45%);
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: rgb(0 0 0 / 45%);
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgb(0 0 0 / 45%);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #fff;
+      border-radius: 999px;
+    }
+  }
+
+  .none-scroll {
     &::-webkit-scrollbar {
       display: none;  /* Chrome, Safari, Opera */
     }
