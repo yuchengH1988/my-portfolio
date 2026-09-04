@@ -277,6 +277,11 @@
     "Nuxt",
     "i18n"
   ],
+  "images": [
+          { "desktop": "fenc.webp" }
+        ],
+        "alt": "Far Eastern New Century project image",
+        "link": "https://www.fenc.com/",
   "detail": {
     "title": "Far Eastern New Century",
     "body": [

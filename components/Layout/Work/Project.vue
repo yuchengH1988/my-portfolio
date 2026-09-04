@@ -9,16 +9,20 @@ const titleSpaceRef = ref(null)
 const titleRef = ref(null)
 let titleTween
 const TITLE_VISUAL_FILL_RATIO = 1.8
+const TITLE_VISUAL_FILL_RATIO_MOBILE = TITLE_VISUAL_FILL_RATIO * 0.7
 
 const getTitleScale = () => {
   if (!titleSpaceRef.value || !titleRef.value) { return 1 }
 
   const titleHeight = titleRef.value.offsetHeight
   const titleSpaceHeight = titleSpaceRef.value.offsetHeight
+  const fillRatio = window.innerWidth < 1024
+    ? TITLE_VISUAL_FILL_RATIO_MOBILE
+    : TITLE_VISUAL_FILL_RATIO
 
   if (!titleHeight || !titleSpaceHeight) { return 1 }
 
-  return Math.min(Math.max(titleSpaceHeight / titleHeight * TITLE_VISUAL_FILL_RATIO, 1), 14)
+  return Math.min(Math.max(titleSpaceHeight / titleHeight * fillRatio, 1), 14)
 }
 
 onMounted(() => {

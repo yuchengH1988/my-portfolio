@@ -3,6 +3,7 @@ import { useAllStore } from '~/store/all'
 import siteContent from '~/locales/site.json'
 
 const AUTOPLAY_DELAY = 2800
+const MOBILE_PROJECT_LIMIT = 4
 const { isCursor } = storeToRefs(useAllStore())
 
 const imageModules = import.meta.glob('../../assets/images/*.{webp,jpg,jpeg,png}', {
@@ -19,6 +20,7 @@ const imageUrls = Object.fromEntries(
 
 const mediaRefs = ref([])
 const slideIndexes = ref({})
+const isMobileProjectsExpanded = ref(false)
 const isProjectModalOpen = ref(false)
 const selectedProjectIndex = ref(0)
 const selectedModalImageIndex = ref(0)
@@ -53,6 +55,7 @@ const selectedData = computed(() =>
 )
 
 const selectedProject = computed(() => selectedData.value[selectedProjectIndex.value] || null)
+const hasMoreMobileProjects = computed(() => selectedData.value.length > MOBILE_PROJECT_LIMIT)
 
 function setMediaRef (el, index) {
   if (el) {
@@ -178,6 +181,7 @@ onBeforeUnmount(() => {
       v-for="(item, idx) in selectedData"
       :key="item.title"
       class="project-row group grid grid-cols-12 gap-4 border-b border-bgc/20 py-4 text-bgc transition-colors duration-500 last:border-b-0 lg:items-center lg:gap-x-4"
+      :class="idx >= MOBILE_PROJECT_LIMIT && !isMobileProjectsExpanded && 'max-sm:hidden'"
       @mouseenter="handleMediaEnter(idx)"
       @mouseleave="handleMediaLeave(idx)"
     >
@@ -269,6 +273,18 @@ onBeforeUnmount(() => {
         </span>
       </button>
     </div>
+    <div
+      v-if="hasMoreMobileProjects && !isMobileProjectsExpanded"
+      class="flex justify-center border-b border-bgc/20 py-6 sm:hidden"
+    >
+      <button
+        type="button"
+        class="text-body-2 rounded-full border border-bgc bg-bgc px-6 py-2 text-black transition-colors duration-300 hover:bg-bgc/80"
+        @click="isMobileProjectsExpanded = true"
+      >
+        More
+      </button>
+    </div>
     <WorkProjectModal
       v-model="isProjectModalOpen"
       :project="selectedProject"
@@ -304,4 +320,5 @@ onBeforeUnmount(() => {
     filter: grayscale(0);
   }
 }
+
 </style>
